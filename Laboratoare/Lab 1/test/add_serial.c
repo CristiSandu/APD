@@ -1,7 +1,6 @@
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include <unistd.h>
 
 /*
@@ -13,18 +12,25 @@ int array_size;
 
 void *f(void *arg)
 {
-    long ID = *(long *)arg;
+    long id = (long)arg;
     long cores = sysconf(_SC_NPROCESSORS_CONF);
+    // ex3
 
-    int start = ID * (double)array_size / cores;
-    int end = fmin((ID + 1) * (double)array_size / cores, array_size);
+    int start = id * (double)array_size / cores;
+    int a = (id + 1) * (double)array_size / cores;
+    int end;
 
-    for (long i = start; i < end; i++)
+    if (a < array_size)
+        end = a;
+    else
+        end = array_size;
+
+    for (int i = start; i < end; i++)
     {
         arr[i] += 100;
-        printf("Hello World din thread-ul %d! functia %ld\n", arr[i], ID);
     }
-    printf("Hello World din thread-ul %ld! \n", ID);
+
+    printf("Final Thread  %ld\n", id);
 
     pthread_exit(NULL);
 }
@@ -58,34 +64,26 @@ int main(int argc, char *argv[])
         }
     }
 
-    // TODO: aceasta operatie va fi paralelizata
-    // for (int i = 0; i < array_size; i++)
-    // {
-    //     arr[i] += 100;
-    // }
-
-    int r, s;
+    /*long cores = sysconf(_SC_NPROCESSORS_CONF);
+    pthread_t threads[cores];
     long id;
     void *status;
-    long cores = sysconf(_SC_NPROCESSORS_CONF);
-    cores = 4;
-    pthread_t threads[cores];
-    long NUM_THREADS2 = cores;
-    long arguments[cores];
+    int r;*/
 
-    for (id = 0; id < NUM_THREADS2; id++)
+    // TODO: aceasta operatie va fi paralelizata
+    for (int id = 0; id < array_size; id++)
     {
-        arguments[id] = id;
-        r = pthread_create(&threads[id], NULL, f, &arguments[id]);
+        arr[id] += 100;
+        /*   r = pthread_create(&threads[id], NULL, f, (void *)id);
 
         if (r)
         {
             printf("Eroare la crearea thread-ului %ld\n", id);
             exit(-1);
-        }
+        }*/
     }
 
-    for (id = 0; id < NUM_THREADS2; id++)
+    /* for (id = 0; id < cores; id++)
     {
         r = pthread_join(threads[id], &status);
 
@@ -94,7 +92,7 @@ int main(int argc, char *argv[])
             printf("Eroare la asteptarea thread-ului %ld\n", id);
             exit(-1);
         }
-    }
+    }*/
 
     for (int i = 0; i < array_size; i++)
     {
