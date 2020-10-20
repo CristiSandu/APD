@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <math.h>
 
 int N;
 int P;
@@ -10,17 +11,24 @@ int **c;
 
 void *thread_function(void *arg)
 {
-	int thread_id = *(int *)arg;
+	int ID = *(int *)arg;
 
-	/*
-	for (i = 0; i < N; i++) {
-		for (j = 0; j < N; j++) {
-			for (k = 0; k < N; k++) {
+	int start = ID * (double)N / P;
+	int end = fmin((ID + 1) * (double)N / P, N);
+
+	int i, j, k;
+
+	printf("Pthread %d\n", ID);
+	for (i = start; i < end; i++)
+	{
+		for (j = start; j < end; j++)
+		{
+			for (k = start; k < end; k++)
+			{
 				c[i][j] += a[i][k] * b[k][j];
 			}
 		}
 	}
-	*/
 
 	pthread_exit(NULL);
 }

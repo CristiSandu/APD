@@ -18,6 +18,6 @@ fi
 ./multiply_seq $N > seq.txt
 ./multiply $N $P > par.txt
 
-diff seq.txt par.txt
+diff seq.txt par.txt 
 
 rm -rf seq.txt par.txt
