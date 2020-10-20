@@ -1,0 +1,2004 @@
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
+./mutex 
+a = 4
