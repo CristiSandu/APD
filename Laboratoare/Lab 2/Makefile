@@ -18,6 +18,8 @@ run4:
 	./multiply_4 100 2
 run5:
 	./multiply_5 100 2
+run6:
+	./strassen 7
 
 clean:
 	rm -rf mutex barrier multiply_seq multiply strassen multiply_4 multiply_5

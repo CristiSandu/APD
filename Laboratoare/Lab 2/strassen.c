@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <pthread.h>
 
+#define NUM_THREADS 7
+
+
 int N;
 int **a;
 int **b;
@@ -23,6 +26,7 @@ int **AUXM62;
 int **M7;
 int **AUXM71;
 int **AUXM72;
+pthread_barrier_t barrier;
 
 void get_args(int argc, char **argv)
 {
@@ -164,11 +168,118 @@ void sub_matrix(int **C, int startCi, int startCj,  int **A, int startAi, int st
 			C[startCi + i][startCj + j] = A[startAi + i][startAj + j] - B[startBi + i][startBj + j];
 }
 
+
+void *f(void *arg)
+{
+	int thread_id = *(int *)arg;
+
+	if (thread_id == 0)
+	{
+		add_matrix(AUXM11, 0, 0, a, 0, 0, a, N/2, N/2);
+		add_matrix(AUXM12, 0, 0, b, 0, 0, b, N/2, N/2);
+		mul_matrix(M1, 0, 0, AUXM11, 0, 0, AUXM12, 0, 0);
+		pthread_barrier_wait(&barrier);
+
+		add_matrix(c, 0, 0, M1, 0, 0, M4, 0, 0);
+		sub_matrix(c, 0, 0, c, 0, 0, M5, 0, 0);
+		add_matrix(c, 0, 0, c, 0, 0, M7, 0, 0);
+	}
+
+	if (thread_id == 1)
+	{
+		add_matrix(AUXM21, 0,0, a, N/2, 0, a, N/2, N/2);
+		mul_matrix(M2, 0, 0, AUXM21, 0, 0, b, 0, 0);
+		pthread_barrier_wait(&barrier);
+		
+	}
+
+	if (thread_id == 2)
+	{
+		sub_matrix(AUXM31, 0, 0, b, 0, N/2, b, N/2, N/2);
+		mul_matrix(M3, 0, 0, a, 0, 0, AUXM31, 0, 0);
+		pthread_barrier_wait(&barrier);
+		
+	}
+
+	if (thread_id == 3)
+	{
+		sub_matrix(AUXM41, 0, 0, b, N/2, 0, b, 0, 0);
+		mul_matrix(M4, 0, 0, a, N/2, N/2, AUXM41, 0, 0);
+		pthread_barrier_wait(&barrier);
+		add_matrix(c, 0, N/2, M3, 0, 0, M5, 0, 0);
+	}
+
+	if (thread_id == 4)
+	{
+		add_matrix(AUXM51, 0,0, a, 0, 0, a, 0, N/2);
+		mul_matrix(M5, 0, 0, AUXM51, 0, 0, b, N/2, N/2);
+		pthread_barrier_wait(&barrier);
+		add_matrix(c, N/2, 0, M2, 0, 0, M4, 0, 0);
+	}
+
+	if (thread_id == 5)
+	{
+		sub_matrix(AUXM61, 0, 0, a, N/2, 0, a, 0, 0);
+		add_matrix(AUXM62, 0, 0, b, 0, 0, b, 0, N/2);
+		mul_matrix(M6, 0, 0, AUXM61, 0, 0, AUXM62, 0, 0);
+		pthread_barrier_wait(&barrier);	
+		sub_matrix(c, N/2, N/2, M1, 0, 0, M2, 0, 0);
+		add_matrix(c, N/2, N/2, c, N/2, N/2, M3, 0, 0);
+		add_matrix(c, N/2, N/2, c, N/2, N/2, M6, 0, 0);
+	}
+
+	if (thread_id == 6)
+	{
+		sub_matrix(AUXM71, 0, 0, a, 0, N/2, a, N/2, N/2);
+		add_matrix(AUXM72, 0, 0, b, N/2, 0, b, N/2, N/2);
+		mul_matrix(M7, 0, 0, AUXM71, 0, 0, AUXM72, 0, 0);
+		pthread_barrier_wait(&barrier);
+	}
+	pthread_exit(NULL);
+}
+
+
+
 int main(int argc, char *argv[])
 {
 	get_args(argc, argv);
 	init();
 
+	int i, r;
+	void *status;
+	pthread_t threads[NUM_THREADS];
+	int arguments[NUM_THREADS];
+
+	if (pthread_barrier_init(&barrier, NULL, 7) != 0)
+	{
+		printf("Error can't initalize barrier");
+		return 1;
+	}
+
+	for (i = 0; i < NUM_THREADS; i++)
+	{
+		arguments[i] = i;
+		r = pthread_create(&threads[i], NULL, f, &arguments[i]);
+
+		if (r)
+		{
+			printf("Eroare la crearea thread-ului %d\n", i);
+			exit(-1);
+		}
+	}
+	pthread_barrier_destroy(&barrier);
+
+	for (i = 0; i < NUM_THREADS; i++)
+	{
+		r = pthread_join(threads[i], &status);
+
+		if (r)
+		{
+			printf("Eroare la asteptarea thread-ului %d\n", i);
+			exit(-1);
+		}
+	}
+/*
 	// calculul matricii M1
 	add_matrix(AUXM11, 0, 0, a, 0, 0, a, N/2, N/2);
 	add_matrix(AUXM12, 0, 0, b, 0, 0, b, N/2, N/2);
@@ -215,7 +326,7 @@ int main(int argc, char *argv[])
 	sub_matrix(c, N/2, N/2, M1, 0, 0, M2, 0, 0);
 	add_matrix(c, N/2, N/2, c, N/2, N/2, M3, 0, 0);
 	add_matrix(c, N/2, N/2, c, N/2, N/2, M6, 0, 0);
-
+*/
 	print(c);
 
 	return 0;
