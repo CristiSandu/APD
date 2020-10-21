@@ -8,22 +8,26 @@ int P;
 int **a;
 int **b;
 int **c;
+//int l;
 
 void *thread_function(void *arg)
 {
 	int ID = *(int *)arg;
 
+	//int start = ID * (double)N / P;
+	//int end = fmin((ID + 1) * (double)N / P, N);
+
+	int j, k;
+
+	//printf("Pthread %d\n", l);
 	int start = ID * (double)N / P;
-	int end = fmin((ID + 1) * (double)N / P, N);
-
-	int i, j, k;
-
-	printf("Pthread %d\n", ID);
-	for (i = start; i < end; i++)
-	{
-		for (j = start; j < end; j++)
+	int end = fmin((ID + 1) * (double)N/ P, N);
+	
+	for (int i = start; i < end; ++i)
+	{	
+		for (j = 0; j < N; j++)
 		{
-			for (k = start; k < end; k++)
+			for (k = 0; k < N; k++)
 			{
 				c[i][j] += a[i][k] * b[k][j];
 			}
@@ -107,7 +111,7 @@ void print(int **mat)
 
 int main(int argc, char *argv[])
 {
-	int i;
+	int i,l;
 
 	get_args(argc, argv);
 	init();
@@ -117,8 +121,9 @@ int main(int argc, char *argv[])
 
 	for (i = 0; i < P; i++)
 	{
+
 		thread_id[i] = i;
-		pthread_create(&tid[i], NULL, thread_function, &thread_id[i]);
+		pthread_create(&tid[i], NULL, thread_function, &thread_id[i]);	
 	}
 
 	for (i = 0; i < P; i++)
