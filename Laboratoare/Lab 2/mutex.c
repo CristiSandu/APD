@@ -11,9 +11,9 @@ void *f(void *arg)
 {
 	pthread_mutex_lock(&mutex);
 	int ID = *(int *)arg;
-	printf("%d %d \n", a, ID);
+	//printf("%d %d \n", a, ID);
 	a += 2;
-	printf("afeter %d = a \n", a);
+	//printf("afeter %d = a \n", a);
 
 	pthread_mutex_unlock(&mutex);
 
