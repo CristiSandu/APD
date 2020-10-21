@@ -26,5 +26,4 @@ diff seq.txt par.txt
 diff seq.txt par_4.txt 
 diff seq.txt par_5.txt 
 
-
-
+rm seq.txt par.txt par_4.txt par_5.txt

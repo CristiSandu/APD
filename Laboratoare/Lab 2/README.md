@@ -105,3 +105,5 @@ user 0m4.004s
 sys 0m1.500s**
 
 Se observa ca timpul este mai mic N = 1000 in cazul paralel.
+
+**Pentru fiecare exercitiu am facut o regula de run/build diferita.**
