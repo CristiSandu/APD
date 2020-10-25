@@ -62,7 +62,7 @@ Testarea corectitudinii am facut-o utilizand **test.sh** ne aparand nici-o difer
 **Cand se ruleaza scriptul verifica toate exercitiile (3, 4, 5)**
 
 Testare timp:  
-pentru N = 1000 si P = 2
+pentru N = 1000 si P = 2  
 **real 0m30.804s
 user 0m34.200s
 sys 0m1.216s**
