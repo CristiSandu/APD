@@ -8,28 +8,37 @@ int P;
 int *v;
 int *vQSort;
 int *vNew;
+pthread_barrier_t barrier;
 
-void merge(int *source, int start, int mid, int end, int *destination) {
+void merge(int *source, int start, int mid, int end, int *destination)
+{
 	int iA = start;
 	int iB = mid;
 	int i;
 
-	for (i = start; i < end; i++) {
-		if (end == iB || (iA < mid && source[iA] <= source[iB])) {
+	for (i = start; i < end; i++)
+	{
+		if (end == iB || (iA < mid && source[iA] <= source[iB]))
+		{
 			destination[i] = source[iA];
 			iA++;
-		} else {
+		}
+		else
+		{
 			destination[i] = source[iB];
 			iB++;
 		}
 	}
 }
 
-void compare_vectors(int *a, int *b) {
+void compare_vectors(int *a, int *b)
+{
 	int i;
 
-	for (i = 0; i < N; i++) {
-		if (a[i] != b[i]) {
+	for (i = 0; i < N; i++)
+	{
+		if (a[i] != b[i])
+		{
 			printf("Sortare incorecta\n");
 			return;
 		}
@@ -38,26 +47,30 @@ void compare_vectors(int *a, int *b) {
 	printf("Sortare corecta\n");
 }
 
-void display_vector(int *v) {
+void display_vector(int *v)
+{
 	int i;
 	int display_width = 2 + log10(N);
 
-	for (i = 0; i < N; i++) {
+	for (i = 0; i < N; i++)
+	{
 		printf("%*i", display_width, v[i]);
 	}
 
 	printf("\n");
 }
 
-int cmp(const void *a, const void *b) {
-	int A = *(int*)a;
-	int B = *(int*)b;
+int cmp(const void *a, const void *b)
+{
+	int A = *(int *)a;
+	int B = *(int *)b;
 	return A - B;
 }
 
 int is_power_of_two(int n)
 {
-	if (n == 0) {
+	if (n == 0)
+	{
 		return 0;
 	}
 
@@ -66,13 +79,15 @@ int is_power_of_two(int n)
 
 void get_args(int argc, char **argv)
 {
-	if(argc < 3) {
+	if (argc < 3)
+	{
 		printf("Numar insuficient de parametri: ./merge N P (N trebuie sa fie putere a lui 2)\n");
 		exit(1);
 	}
 
 	N = atoi(argv[1]);
-	if (!is_power_of_two(N)) {
+	if (!is_power_of_two(N))
+	{
 		printf("N trebuie sa fie putere a lui 2\n");
 		exit(1);
 	}
@@ -87,7 +102,8 @@ void init()
 	vQSort = malloc(sizeof(int) * N);
 	vNew = malloc(sizeof(int) * N);
 
-	if (v == NULL || vQSort == NULL || vNew == NULL) {
+	if (v == NULL || vQSort == NULL || vNew == NULL)
+	{
 		printf("Eroare la malloc!");
 		exit(1);
 	}
@@ -97,7 +113,6 @@ void init()
 	for (i = 0; i < N; i++)
 		v[i] = rand() % N;
 }
-
 
 void print()
 {
@@ -113,6 +128,43 @@ void *thread_function(void *arg)
 	int thread_id = *(int *)arg;
 
 	// implementati aici merge sort paralel
+	int start = thread_id * (double)N / P;
+	int end = fmin((thread_id + 1) * (double)N / P, N);
+	//printf("Faza -1 %d\n", L);
+	int width, *aux, i, start_imp, start_par;
+
+	if (start % 2 != 0)
+	{
+		start_imp = start;
+		start_par = start + 1;
+	}
+	else
+	{
+		start_imp = start + 1;
+		start_par = start;
+	}
+
+	for (width = start + 1; width < end && width < N; width = 2 * width)
+	{
+		//printf("Step 1 thred %d width %d\n", thread_id, width);
+
+		for (i = start; i < end && i < N; i = i + 2 * width)
+		{
+			//printf("Step 2 thred %d i %d\n", thread_id, i);
+
+#if 0
+#endif
+			if ((i + width < N) && (i + 2 * width < N))
+			{
+				merge(v, i, i + width, i + 2 * width, vNew);
+			}
+			//
+		}
+		pthread_barrier_wait(&barrier);
+		aux = v;
+		v = vNew;
+		vNew = aux;
+	}
 
 	pthread_exit(NULL);
 }
@@ -131,28 +183,38 @@ int main(int argc, char *argv[])
 		vQSort[i] = v[i];
 	qsort(vQSort, N, sizeof(int), cmp);
 
+	if (pthread_barrier_init(&barrier, NULL, P) != 0)
+	{
+		printf("Error can't initalize barrier");
+		return 1;
+	}
+
 	// se creeaza thread-urile
-	for (i = 0; i < P; i++) {
+	for (i = 0; i < P; i++)
+	{
 		thread_id[i] = i;
 		pthread_create(&tid[i], NULL, thread_function, &thread_id[i]);
 	}
 
+	pthread_barrier_destroy(&barrier);
+
 	// se asteapta thread-urile
-	for (i = 0; i < P; i++) {
+	for (i = 0; i < P; i++)
+	{
 		pthread_join(tid[i], NULL);
 	}
 
 	// merge sort clasic - trebuie paralelizat
-	int width, *aux;
-	for (width = 1; width < N; width = 2 * width) {
-		for (i = 0; i < N; i = i + 2 * width) {
-			merge(v, i, i + width, i + 2 * width, vNew);
-		}
+	// int width, *aux;
+	// for (width = 1; width < N; width = 2 * width) {
+	// 	for (i = 0; i < N; i = i + 2 * width) {
+	// 		merge(v, i, i + width, i + 2 * width, vNew);
+	// 	}
 
-		aux = v;
-		v = vNew;
-		vNew = aux;
-	}
+	// 	aux = v;
+	// 	v = vNew;
+	// 	vNew = aux;
+	// }
 
 	print();
 

@@ -62,7 +62,45 @@ real 0m0,549s
 user 0m0,523s
 sys 0m0,000s
 
+10000 P = 8
+real 0m0,521s
+user 0m0,975s
+sys 0m0,473s
+
 1000
 real 0m0,010s
 user 0m0,010s
 sys 0m0,001s
+
+## Ex 3 si 4
+
+Timp standard ne paralel
+pentru L = 100,
+
+real 0m0,028s
+user 0m0,024s
+sys 0m0,004s
+
+pentru L = 1000,
+real 0m1,686s
+user 0m1,673s
+sys 0m0,008s
+
+Timp in paralel
+
+pentru L = 100 si P = 5
+real 0m0,009s
+user 0m0,021s
+sys 0m0,003s
+
+pentru L = 1000 si P = 5
+real 0m0,766s
+user 0m2,072s
+sys 0m0,008s
+
+## Ex 5
+
+N= 32768 P=5
+real 0m1,304s
+user 0m0,020s
+sys 0m0,015s

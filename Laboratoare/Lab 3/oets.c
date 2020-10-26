@@ -8,6 +8,7 @@ int P;
 int *v;
 int *vQSort;
 pthread_mutex_t mutex;
+pthread_barrier_t barrier;
 
 void compare_vectors(int *a, int *b)
 {
@@ -91,37 +92,43 @@ void *thread_function(void *arg)
 
 	int start = thread_id * (double)N / P;
 	int end = fmin((thread_id + 1) * (double)N / P, N);
-	int i, k, aux;
+	int i, k, aux, start_imp, start_par;
 
-	for (k = start; k < end; k++)
+	if (start % 2 != 0)
 	{
-		for (i = 0; i < N - 1; i += 2)
-		{
-			pthread_mutex_lock(&mutex);
+		start_imp = start;
+		start_par = start + 1;
+	}
+	else
+	{
+		start_imp = start + 1;
+		start_par = start;
+	}
 
-			if (v[i] > v[i + 1])
+	for (k = 0; k < N; k++)
+	{
+		for (i = start_par; i < end; i += 2)
+		{
+			if (v[i] > v[i + 1] && (i < N - 1))
 			{
 				aux = v[i];
 				v[i] = v[i + 1];
 				v[i + 1] = aux;
 			}
-			pthread_mutex_unlock(&mutex);
 		}
+		pthread_barrier_wait(&barrier);
 
-		for (i = 1; i < N - 1; i += 2)
+		for (i = start_imp; i < end; i += 2)
 		{
-			pthread_mutex_lock(&mutex);
 
-			if (v[i] > v[i + 1])
+			if ((v[i] > v[i + 1]) && (i < N - 1))
 			{
 				aux = v[i];
 				v[i] = v[i + 1];
 				v[i + 1] = aux;
 			}
-			pthread_mutex_unlock(&mutex);
 		}
-
-		//pthread_barrier_wait(&barrier);
+		pthread_barrier_wait(&barrier);
 	}
 	// implementati aici OETS paralel
 
@@ -142,9 +149,15 @@ int main(int argc, char *argv[])
 		vQSort[i] = v[i];
 	qsort(vQSort, N, sizeof(int), cmp);
 
-	if (pthread_mutex_init(&mutex, NULL) != 0)
+	// if (pthread_mutex_init(&mutex, NULL) != 0)
+	// {
+	// 	printf("Error to initialize mutex");
+	// 	return 1;
+	// }
+
+	if (pthread_barrier_init(&barrier, NULL, P) != 0)
 	{
-		printf("Error to initialize mutex");
+		printf("Error can't initalize barrier");
 		return 1;
 	}
 	// se creeaza thread-urile
@@ -159,7 +172,9 @@ int main(int argc, char *argv[])
 	{
 		pthread_join(tid[i], NULL);
 	}
-	pthread_mutex_destroy(&mutex);
+	//pthread_mutex_destroy(&mutex);
+
+	pthread_barrier_destroy(&barrier);
 
 	// bubble sort clasic - trebuie transformat in OETS si paralelizat
 	// int sorted = 0;
