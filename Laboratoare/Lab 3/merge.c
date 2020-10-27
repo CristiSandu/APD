@@ -131,43 +131,34 @@ void *thread_function(void *arg)
 	//int start = thread_id * (double)N / P;
 	//int end = fmin((thread_id + 1) * (double)N / P, N);
 	///printf("Faza -1 %d\n", L);
-	int width, *aux, i, start_imp, start_par;
-
-	/*	if (start % 2 != 0)
-	{
-		start_imp = start;
-		start_par = start + 1;
-	}
-	else
-	{
-		start_imp = start + 1;
-		start_par = start;
-	}*/
+	int width, *aux, i, start_imp, start_par, start, end;
 
 	for (width = 1; width < N; width = 2 * width)
 	{
 
 		//printf("Step 1 thred %d width %d\n", thread_id, width);
-		int start = thread_id * (double)N / P;
-		int end = fmin((thread_id + 1) * (double)N / P, N);
+		start = thread_id * (double)N / P;
+		start = start / (2 * width);
+		start = start * (2 * width);
+
+		end = fmin((thread_id + 1) * (double)N / P, N);
+		end = end / (2 * width);
+		end = end * (2 * width);
+
 		for (i = start; i < end && i < N; i = i + 2 * width)
 		{
-			//printf("Step 2 thred %d i %d\n", thread_id, i);
-
-#if 0
-#endif
-			if ((i + width < N) && (i + 2 * width < N))
-			{
-				merge(v, i, i + width, i + 2 * width, vNew);
-			}
-			//
-				}
-		//
-		aux = v;
-		v = vNew;
-		vNew = aux;
+			merge(v, i, i + width, i + 2 * width, vNew);
+		}
 		pthread_barrier_wait(&barrier);
+		//
+		if (thread_id == 0)
+		{
+			aux = v;
+			v = vNew;
+			vNew = aux;
+		}
 	}
+	//pthread_barrier_wait(&barrier);
 
 	pthread_exit(NULL);
 }
@@ -186,7 +177,7 @@ int main(int argc, char *argv[])
 		vQSort[i] = v[i];
 	qsort(vQSort, N, sizeof(int), cmp);
 
-	if (pthread_barrier_init(&barrier, NULL, P) != 0)
+	if (pthread_barrier_init(&barrier, NULL, 2) != 0)
 	{
 		printf("Error can't initalize barrier");
 		return 1;
