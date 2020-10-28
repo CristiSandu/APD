@@ -137,13 +137,10 @@ void *thread_function(void *arg)
 	{
 
 		//printf("Step 1 thred %d width %d\n", thread_id, width);
-		start = thread_id * (double)N / P;
-		start = start / (2 * width);
-		start = start * (2 * width);
+		int mearge = N / (2 * width);
+		start = thread_id * (double)mearge / (P * 2 * width);
 
-		end = fmin((thread_id + 1) * (double)N / P, N);
-		end = end / (2 * width);
-		end = end * (2 * width);
+		end = fmin((thread_id + 1) * (double)mearge / (P * 2 * width), N);
 
 		for (i = start; i < end && i < N; i = i + 2 * width)
 		{
@@ -157,8 +154,8 @@ void *thread_function(void *arg)
 			v = vNew;
 			vNew = aux;
 		}
+		pthread_barrier_wait(&barrier);
 	}
-	//pthread_barrier_wait(&barrier);
 
 	pthread_exit(NULL);
 }
