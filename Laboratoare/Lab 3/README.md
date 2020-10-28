@@ -2,7 +2,8 @@
 
 ## EX 1 si EX 2
 
-La aceste exercitiu m-am folosit de un mutex pentru a bloca interschimbarile astfel incat in cazul in care 2 threduri ajung sa foloseasca acceasi adresa de memorie sa se astepte ca unul dintre ele sa termine de schimbat.  
+La aceste exercitiu m-am folosit de un mutex pentru a bloca interschimbarile astfel incat in cazul in care 2 threduri ajung sa foloseasca acceasi adresa de memorie sa se astepte ca unul dintre ele sa termine de schimbat.
+
 Ca si corectitudine programu executa corect operatiile :
 
         cristi@ideapad-330-15ICH:~/Documents/Anul 3/Sem 1/APD/Laboratoare/Lab 3$ ./oets 100 8
@@ -55,32 +56,38 @@ Timpi cazul paralel:
 
 ## Ex 3 si 4
 
-Timp standard ne paralel
-pentru L = 100,
-real 0m0.021s
-user 0m0.020s
-sys 0m0.000s
+La acest exercitiu am paralelizat algoritmul de **Shear sort**:
+ca si idee am parelizat cele 2 foruri interioare punand cate o bariera dupa fiecare astfel incat sa nu apara deviatii, verificand tot o data sa nu iasa din vector cu indicii.
 
-pentru L = 1000,
-real 0m1.219s
-user 0m1.208s
-sys 0m0.011s
+Scalabilitate:
+
+Timp standard ne paralel
+
+    pentru L = 100,
+    real 0m0.021s
+    user 0m0.020s
+    sys 0m0.000s
+
+    pentru L = 1000,
+    real 0m1.219s
+    user 0m1.208s
+    sys 0m0.011s
 
 Timp in paralel
 
-pentru L = 100 si P = 5
-real 0m0,009s
-user 0m0,021s
-sys 0m0,003s
+    pentru L = 100 si P = 5
+    real 0m0,009s
+    user 0m0,021s
+    sys 0m0,003s
 
-pentru L = 1000 si P = 5
-real 0m0,766s
-user 0m2,072s
-sys 0m0,008s
+    pentru L = 1000 si P = 5
+    real 0m0,766s
+    user 0m2,072s
+    sys 0m0,008s
 
 ## Ex 5
 
-N= 32768 P=5
-real 0m1,304s
-user 0m0,020s
-sys 0m0,015s
+In exercitiu acesta am incercat sa paralelizez **mearge sort**.
+Aici am paralelizat forul din interior calculanda start-ul si end-ul diferit astfel incat cand o sa avem ex 2/4 sa se trunchieze la 0. Am folosit 2 bariere una dupa primul for una dupa interschimbare, deoarece dupa fiecare pas trebuie sa asteptam toate threduri-le ca sa trecem la pasul urmator.
+
+**Am implementat in makeflie cate o regula separart pentru fiecare caz**
