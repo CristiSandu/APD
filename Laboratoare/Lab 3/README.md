@@ -57,15 +57,14 @@ Timpi cazul paralel:
 
 Timp standard ne paralel
 pentru L = 100,
-
-real 0m0,028s
-user 0m0,024s
-sys 0m0,004s
+real 0m0.021s
+user 0m0.020s
+sys 0m0.000s
 
 pentru L = 1000,
-real 0m1,686s
-user 0m1,673s
-sys 0m0,008s
+real 0m1.219s
+user 0m1.208s
+sys 0m0.011s
 
 Timp in paralel
 
