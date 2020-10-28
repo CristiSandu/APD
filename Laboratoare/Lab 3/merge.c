@@ -133,27 +133,29 @@ void *thread_function(void *arg)
 	///printf("Faza -1 %d\n", L);
 	int width, *aux, i, start_imp, start_par, start, end;
 
+	start = thread_id * (double)N / P;
+	end = (thread_id + 1) * (double)N / P;
+
 	for (width = 1; width < N; width = 2 * width)
 	{
-
-		//printf("Step 1 thred %d width %d\n", thread_id, width);
 		int mearge = N / (2 * width);
-		start = thread_id * (double)mearge / (P * 2 * width);
+		int start_local = (start / (2 * width)) * (2 * width);
 
-		end = fmin((thread_id + 1) * (double)mearge / (P * 2 * width), N);
+		int end_local = fmin((end / (2 * width)) * (2 * width), N);
 
-		for (i = start; i < end && i < N; i = i + 2 * width)
+		for (i = start_local; i < end_local; i = i + 2 * width)
 		{
 			merge(v, i, i + width, i + 2 * width, vNew);
 		}
 		pthread_barrier_wait(&barrier);
-		//
+
 		if (thread_id == 0)
 		{
 			aux = v;
 			v = vNew;
 			vNew = aux;
 		}
+
 		pthread_barrier_wait(&barrier);
 	}
 
@@ -174,7 +176,7 @@ int main(int argc, char *argv[])
 		vQSort[i] = v[i];
 	qsort(vQSort, N, sizeof(int), cmp);
 
-	if (pthread_barrier_init(&barrier, NULL, 2) != 0)
+	if (pthread_barrier_init(&barrier, NULL, P) != 0)
 	{
 		printf("Error can't initalize barrier");
 		return 1;
