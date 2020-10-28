@@ -20,58 +20,38 @@ Ca si corectitudine programu executa corect operatiile :
 
 Ca si scalabilite :
 
+Timpi standard pentru neparalel:
+time ./oets_secv 100 1
+real 0m0.004s
+user 0m0.001s
+sys 0m0.002s
+
+    time ./oets_secv 1000 1
+    real    0m0.016s
+    user    0m0.013s
+    sys     0m0.003s
+
+    time ./oets_secv 20000 1
+    real    0m1.818s
+    user    0m1.811s
+    sys     0m0.007s
+
+Timpi cazul paralel:
+
     time ./oets 100 2
-    real    0m0,004s
-    user    0m0,005s
-    sys     0m0,001s
+    real    0m0.012s
+    user    0m0.005s
+    sys     0m0.010s
 
-    real    0m0.017s
-    user    0m0.004s
-    sys     0m0.018s
+    time ./oets 100 4
+    real    0m0.026s
+    user    0m0.000s
+    sys     0m0.043s
 
-    time ./oets 100 8
-    real    0m0,004s
-    user    0m0,000s
-    sys     0m0,013s
-
-    real    0m0.039s
-    user    0m0.016s
-    sys     0m0.045s
-
-    time ./oets 1000 2
-    real    0m0,081s
-    user    0m0,096s
-    sys     0m0,060s
-
-    time ./oets 1000 8
-    real    0m0,137s
-    user    0m0,429s
-    sys     0m0,515s
-
-    time ./oets 10000 1
-    real    0m2,533s
-    user    0m2,495s
-    sys     0m0,000s
-
-    time ./oets 10000 8
-    real    0m12,657s
-    user    0m37,201s
-    sys     0m51,473s
-
-10000
-real 0m0,549s
-user 0m0,523s
-sys 0m0,000s
-
-10000 P = 8
-real 0m0,521s
-user 0m0,975s
-sys 0m0,473s
-
-1000
-real 0m0,010s
-user 0m0,010s
-sys 0m0,001s
+    time ./oets 20000 4
+    real    0m1.519s
+    user    0m3.558s
+    sys     0m1.020s
 
 ## Ex 3 si 4
 

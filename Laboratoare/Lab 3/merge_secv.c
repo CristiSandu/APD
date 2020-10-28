@@ -171,11 +171,11 @@ int main(int argc, char *argv[])
 	pthread_t tid[P];
 
 	// se sorteaza vectorul etalon
-	for (i = 0; i < N; i++)
-		vQSort[i] = v[i];
-	qsort(vQSort, N, sizeof(int), cmp);
+	// for (i = 0; i < N; i++)
+	// 	vQSort[i] = v[i];
+	// qsort(vQSort, N, sizeof(int), cmp);
 
-	// if (pthread_barrier_init(&barrier, NULL, P) != 0)
+	// // if (pthread_barrier_init(&barrier, NULL, P) != 0)
 	// {
 	// 	printf("Error can't initalize barrier");
 	// 	return 1;
@@ -210,7 +210,7 @@ int main(int argc, char *argv[])
 		vNew = aux;
 	}
 
-	print();
+	//print();
 
 	free(v);
 	free(vQSort);
