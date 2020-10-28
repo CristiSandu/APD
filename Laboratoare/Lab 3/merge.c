@@ -131,22 +131,22 @@ void *thread_function(void *arg)
 	//int start = thread_id * (double)N / P;
 	//int end = fmin((thread_id + 1) * (double)N / P, N);
 	///printf("Faza -1 %d\n", L);
-	int width, *aux, i, start_imp, start_par, start, end;
+	int width, *aux, i, start_imp, start_par, start, end, start_local, end_local;
 
 	start = thread_id * (double)N / P;
 	end = (thread_id + 1) * (double)N / P;
 
 	for (width = 1; width < N; width = 2 * width)
 	{
-		int mearge = N / (2 * width);
-		int start_local = (start / (2 * width)) * (2 * width);
+		start_local = (start / (2 * width)) * (2 * width);
 
-		int end_local = fmin((end / (2 * width)) * (2 * width), N);
+		end_local = fmin((end / (2 * width)) * (2 * width), N);
 
 		for (i = start_local; i < end_local; i = i + 2 * width)
 		{
 			merge(v, i, i + width, i + 2 * width, vNew);
 		}
+
 		pthread_barrier_wait(&barrier);
 
 		if (thread_id == 0)
