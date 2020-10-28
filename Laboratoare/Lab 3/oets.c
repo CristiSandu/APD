@@ -145,9 +145,9 @@ int main(int argc, char *argv[])
 	int thread_id[P];
 
 	// se sorteaza vectorul etalon
-	for (i = 0; i < N; i++)
-		vQSort[i] = v[i];
-	qsort(vQSort, N, sizeof(int), cmp);
+	// for (i = 0; i < N; i++)
+	// 	vQSort[i] = v[i];
+	// qsort(vQSort, N, sizeof(int), cmp);
 
 	// if (pthread_mutex_init(&mutex, NULL) != 0)
 	// {
@@ -197,7 +197,7 @@ int main(int argc, char *argv[])
 	// se afiseaza vectorul etalon
 	// se afiseaza vectorul curent
 	// se compara cele doua
-	print();
+	// print();
 
 	free(v);
 	free(vQSort);

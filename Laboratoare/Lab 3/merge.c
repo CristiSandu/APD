@@ -139,7 +139,6 @@ void *thread_function(void *arg)
 	for (width = 1; width < N; width = 2 * width)
 	{
 		start_local = (start / (2 * width)) * (2 * width);
-
 		end_local = fmin((end / (2 * width)) * (2 * width), N);
 
 		for (i = start_local; i < end_local; i = i + 2 * width)
@@ -172,9 +171,9 @@ int main(int argc, char *argv[])
 	pthread_t tid[P];
 
 	// se sorteaza vectorul etalon
-	for (i = 0; i < N; i++)
-		vQSort[i] = v[i];
-	qsort(vQSort, N, sizeof(int), cmp);
+	// for (i = 0; i < N; i++)
+	// 	vQSort[i] = v[i];
+	// qsort(vQSort, N, sizeof(int), cmp);
 
 	if (pthread_barrier_init(&barrier, NULL, P) != 0)
 	{
@@ -209,7 +208,7 @@ int main(int argc, char *argv[])
 	// 	vNew = aux;
 	// }
 
-	print();
+	//print();
 
 	free(v);
 	free(vQSort);

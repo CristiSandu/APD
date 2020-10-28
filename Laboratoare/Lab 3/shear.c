@@ -206,8 +206,8 @@ int main(int argc, char *argv[])
 	int thread_id[P];
 
 	// se sorteaza etalonul
-	copy_matrix_in_vector(vQSort, M);
-	qsort(vQSort, N, sizeof(int), cmp);
+	// copy_matrix_in_vector(vQSort, M);
+	// qsort(vQSort, N, sizeof(int), cmp);
 
 	if (pthread_barrier_init(&barrier, NULL, P) != 0)
 	{
@@ -267,7 +267,7 @@ int main(int argc, char *argv[])
 	// se afiseaza vectorul etalon
 	// se afiseaza matricea curenta sub forma de vector
 	// se compara cele doua
-	print();
+	//print();
 
 	free(v);
 	free(vQSort);
