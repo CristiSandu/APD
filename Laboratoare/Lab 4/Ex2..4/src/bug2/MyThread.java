@@ -9,10 +9,8 @@ public class MyThread implements Runnable {
 
 	@Override
 	public void run() {
-		synchronized (this) {
 			synchronized (this) {
 				i++;
-			}
 		}
 	}
 }
