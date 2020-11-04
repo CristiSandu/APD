@@ -6,11 +6,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <pthread.h>
 
 char *in_filename_julia;
 char *in_filename_mandelbrot;
 char *out_filename_julia;
 char *out_filename_mandelbrot;
+int P;
+
+pthread_barrier_t barrier;
 
 // structura pentru un numar complex
 typedef struct _complex
@@ -30,11 +34,11 @@ typedef struct _params
 // citeste argumentele programului
 void get_args(int argc, char **argv)
 {
-	if (argc < 5)
+	if (argc < 6)
 	{
 		printf("Numar insuficient de parametri:\n\t"
-			   "./tema1 fisier_intrare_julia fisier_iesire_julia "
-			   "fisier_intrare_mandelbrot fisier_iesire_mandelbrot\n");
+			   "./tema1_par fisier_intrare_julia fisier_iesire_julia "
+			   "fisier_intrare_mandelbrot fisier_iesire_mandelbrot <p>\n");
 		exit(1);
 	}
 
@@ -42,6 +46,7 @@ void get_args(int argc, char **argv)
 	out_filename_julia = argv[2];
 	in_filename_mandelbrot = argv[3];
 	out_filename_mandelbrot = argv[4];
+	P = argv[5];
 }
 
 // citeste fisierul de intrare
@@ -204,14 +209,49 @@ void run_mandelbrot(params *par, int **result, int width, int height)
 	}
 }
 
+void *thread_function(void *arg)
+{
+	int thread_id = *(int *)arg;
+
+	//int start = thread_id * (double)N / P;
+	//int end = fmin((thread_id + 1) * (double)N / P, N);
+
+	pthread_exit(NULL);
+}
+
 int main(int argc, char *argv[])
 {
 	params par;
 	int width, height;
 	int **result;
 
+	int i, aux;
+	pthread_t tid[P];
+	int thread_id[P];
+
 	// se citesc argumentele programului
 	get_args(argc, argv);
+
+	//barrier init
+	if (pthread_barrier_init(&barrier, NULL, P) != 0)
+	{
+		printf("Error can't initalize barrier");
+		return 1;
+	}
+
+	// start thread
+	for (i = 0; i < P; i++)
+	{
+		thread_id[i] = i;
+		pthread_create(&tid[i], NULL, thread_function, &thread_id[i]);
+	}
+
+	// se asteapta thread-urile
+	for (i = 0; i < P; i++)
+	{
+		pthread_join(tid[i], NULL);
+	}
+	//pthread_mutex_destroy(&mutex);
 
 	// Julia:
 	// - se citesc parametrii de intrare
