@@ -13,6 +13,9 @@ char *in_filename_mandelbrot;
 char *out_filename_julia;
 char *out_filename_mandelbrot;
 int P;
+int width, widthM, height, heightM;
+int **result;
+int **resultM;
 
 pthread_barrier_t barrier;
 
@@ -31,6 +34,8 @@ typedef struct _params
 	complex c_julia;
 } params;
 
+params par, parM;
+
 // citeste argumentele programului
 void get_args(int argc, char **argv)
 {
@@ -46,7 +51,7 @@ void get_args(int argc, char **argv)
 	out_filename_julia = argv[2];
 	in_filename_mandelbrot = argv[3];
 	out_filename_mandelbrot = argv[4];
-	P = argv[5];
+	P = atoi(argv[5]);
 }
 
 // citeste fisierul de intrare
@@ -215,22 +220,67 @@ void *thread_function(void *arg)
 
 	//int start = thread_id * (double)N / P;
 	//int end = fmin((thread_id + 1) * (double)N / P, N);
+	run_julia(&par, result, width, height);
+
+	run_mandelbrot(&par, result, width, height);
+
+	printf("%f %d %d \n", par.c_julia.a, par.is_julia, par.iterations);
+	write_output_file(out_filename_julia, result, width, height);
+
+	printf("%f %d %d \n", parM.c_julia.a, parM.is_julia, parM.iterations);
+
+	printf("%d\n", thread_id);
+	write_output_file(out_filename_mandelbrot, resultM, widthM, heightM);
 
 	pthread_exit(NULL);
 }
+/*
+void *thread_function_Mad(void *arg)
+{
+	int thread_id = *(int *)arg;
 
+	//int start = thread_id * (double)N / P;
+	//int end = fmin((thread_id + 1) * (double)N / P, N);
+	printf("%f %d %d \n", parM.c_julia.a, parM.is_julia, parM.iterations);
+
+	printf("%d\n", thread_id);
+	write_output_file(out_filename_mandelbrot, resultM, widthM, heightM);
+	pthread_exit(NULL);
+}
+*/
 int main(int argc, char *argv[])
 {
-	params par;
+	/*params par;
 	int width, height;
-	int **result;
+	int **result;*/
 
-	int i, aux;
+	int r;
+
+	void *status;
+	int i;
+	// se citesc argumentele programului
+	get_args(argc, argv);
+
 	pthread_t tid[P];
 	int thread_id[P];
 
-	// se citesc argumentele programului
-	get_args(argc, argv);
+	read_input_file(in_filename_julia, &par);
+	width = (par.x_max - par.x_min) / par.resolution;
+	height = (par.y_max - par.y_min) / par.resolution;
+
+	result = allocate_memory(width, height);
+
+	//run_julia(&par, result, width, height);
+	//	write_output_file(out_filename_julia, result, width, height);
+
+	read_input_file(in_filename_mandelbrot, &parM);
+
+	widthM = (parM.x_max - parM.x_min) / parM.resolution;
+	heightM = (parM.y_max - parM.y_min) / parM.resolution;
+
+	resultM = allocate_memory(widthM, heightM);
+	//run_mandelbrot(&par, result, width, height);
+	//write_output_file(out_filename_mandelbrot, resultM, widthM, heightM);
 
 	//barrier init
 	if (pthread_barrier_init(&barrier, NULL, P) != 0)
@@ -240,17 +290,36 @@ int main(int argc, char *argv[])
 	}
 
 	// start thread
+	//printf("%d ", P);
 	for (i = 0; i < P; i++)
 	{
-		thread_id[i] = i;
-		pthread_create(&tid[i], NULL, thread_function, &thread_id[i]);
-	}
 
+		thread_id[i] = i;
+		printf("%d ", thread_id[i]);
+		pthread_create(&tid[i], NULL, thread_function, &thread_id[i]);
+		//	pthread_create(&tid[i], NULL, thread_function_Mad, &thread_id[i]);
+	}
+	//printf("A iesit !!!1  %d\n ", P);
 	// se asteapta thread-urile
 	for (i = 0; i < P; i++)
 	{
-		pthread_join(tid[i], NULL);
+		//printf("A intrat !!!1  %ld\n ", i);
+
+		r = pthread_join(tid[i], &status);
+		//r = pthread_join(tid[i], &status);
+
+		if (r)
+		{
+			printf("Eroare la asteptarea thread-ului %d\n", i);
+			exit(-1);
+		}
 	}
+	pthread_barrier_destroy(&barrier);
+
+	free_memory(result, height);
+	free_memory(resultM, heightM);
+
+	pthread_exit(NULL);
 	//pthread_mutex_destroy(&mutex);
 
 	// Julia:
@@ -259,7 +328,7 @@ int main(int argc, char *argv[])
 	// - se ruleaza algoritmul
 	// - se scrie rezultatul in fisierul de iesire
 	// - se elibereaza memoria alocata
-	read_input_file(in_filename_julia, &par);
+	/*	read_input_file(in_filename_julia, &par);
 
 	width = (par.x_max - par.x_min) / par.resolution;
 	height = (par.y_max - par.y_min) / par.resolution;
@@ -284,6 +353,6 @@ int main(int argc, char *argv[])
 	run_mandelbrot(&par, result, width, height);
 	write_output_file(out_filename_mandelbrot, result, width, height);
 	free_memory(result, height);
-
+*/
 	return 0;
 }
