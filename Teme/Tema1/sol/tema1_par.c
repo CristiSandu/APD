@@ -18,6 +18,7 @@ int **result;
 int **resultM;
 
 pthread_barrier_t barrier;
+pthread_mutex_t mutex;
 
 // structura pentru un numar complex
 typedef struct _complex
@@ -218,20 +219,96 @@ void *thread_function(void *arg)
 {
 	int thread_id = *(int *)arg;
 
-	//int start = thread_id * (double)N / P;
-	//int end = fmin((thread_id + 1) * (double)N / P, N);
-	run_julia(&par, result, width, height);
+	int start = thread_id * (double)width / P;
+	int end = fmin((thread_id + 1) * (double)width / P, width);
+	int w, h, i, step;
+	int *aux;
 
-	run_mandelbrot(&par, result, width, height);
+	for (w = start; w < end; w++)
+	{
+		for (h = 0; h < height; h++)
+		{
+			step = 0;
+			complex z = {.a = w * par.resolution + par.x_min,
+						 .b = h * par.resolution + par.y_min};
 
-	printf("%f %d %d \n", par.c_julia.a, par.is_julia, par.iterations);
-	write_output_file(out_filename_julia, result, width, height);
+			while (sqrt(pow(z.a, 2.0) + pow(z.b, 2.0)) < 2.0 && step < par.iterations)
+			{
+				complex z_aux = {.a = z.a, .b = z.b};
 
-	printf("%f %d %d \n", parM.c_julia.a, parM.is_julia, parM.iterations);
+				z.a = pow(z_aux.a, 2) - pow(z_aux.b, 2) + par.c_julia.a;
+				z.b = 2 * z_aux.a * z_aux.b + par.c_julia.b;
 
-	printf("%d\n", thread_id);
-	write_output_file(out_filename_mandelbrot, resultM, widthM, heightM);
+				step++;
+			}
 
+			result[h][w] = step % 256;
+		}
+	}
+
+	pthread_barrier_wait(&barrier);
+
+	//int start_tran = thread_id * (double)width / P;
+	//int end_tran = fmin((thread_id + 1) * (double)width / P, width);
+	// transforma rezultatul din coordonate matematice in coordonate ecran
+	if (thread_id == 1)
+	{
+		for (i = 0; i < width / 2; i++)
+		{
+			aux = result[i];
+			result[i] = result[height - i - 1];
+			result[height - i - 1] = aux;
+		}
+		write_output_file(out_filename_julia, result, width, height);
+	}
+
+	pthread_barrier_wait(&barrier);
+
+	int startM = thread_id * (double)widthM / P;
+	int endM = fmin((thread_id + 1) * (double)widthM / P, widthM);
+
+	for (w = startM; w < endM; w++)
+	{
+		for (h = 0; h < heightM; h++)
+		{
+			complex c = {.a = w * parM.resolution + parM.x_min,
+						 .b = h * parM.resolution + parM.y_min};
+			complex z = {.a = 0, .b = 0};
+			step = 0;
+
+			while (sqrt(pow(z.a, 2.0) + pow(z.b, 2.0)) < 2.0 && step < parM.iterations)
+			{
+				complex z_aux = {.a = z.a, .b = z.b};
+
+				z.a = pow(z_aux.a, 2.0) - pow(z_aux.b, 2.0) + c.a;
+				z.b = 2.0 * z_aux.a * z_aux.b + c.b;
+
+				step++;
+			}
+
+			resultM[h][w] = step % 256;
+		}
+	}
+	pthread_barrier_wait(&barrier);
+
+	//int startM_tran = thread_id * (double)widthM / P;
+	//int endM_tran = fmin((thread_id + 1) * (double)widthM / P, widthM);
+
+	// transforma rezultatul din coordonate matematice in coordonate ecran
+	if (thread_id == 0)
+	{
+
+		for (i = 0; i < widthM / 2; i++)
+		{
+			aux = resultM[i];
+			resultM[i] = resultM[heightM - i - 1];
+			resultM[heightM - i - 1] = aux;
+		}
+
+		write_output_file(out_filename_mandelbrot, resultM, widthM, heightM);
+	}
+
+	pthread_barrier_wait(&barrier);
 	pthread_exit(NULL);
 }
 /*
@@ -286,6 +363,12 @@ int main(int argc, char *argv[])
 	if (pthread_barrier_init(&barrier, NULL, P) != 0)
 	{
 		printf("Error can't initalize barrier");
+		return 1;
+	}
+
+	if (pthread_mutex_init(&mutex, NULL) != 0)
+	{
+		printf("Error to initialize mutex");
 		return 1;
 	}
 
