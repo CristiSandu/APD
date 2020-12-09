@@ -61,6 +61,6 @@ public class Main {
         ExecutorService tpe = Executors.newFixedThreadPool(4);
 
         inQueue.incrementAndGet();
-        tpe.submit(new task2.MyRunnavle(colors, tpe, inQueue));
+        tpe.submit(new task2.MyRunnavle(colors, tpe, inQueue, 0));
     }
 }

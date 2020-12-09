@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
     public static int N = 4;
-
+/*
     private static boolean check(int[] arr, int step) {
         for (int i = 0; i <= step; i++) {
             for (int j = i + 1; j <= step; j++) {
@@ -41,7 +41,7 @@ public class Main {
                 queens(newGraph, step + 1);
             }
         }
-    }
+    }*/
     public static void main(String[] args) {
         int[] graph = new int[N];
         //queens(graph, 0);
@@ -50,6 +50,6 @@ public class Main {
         ExecutorService tpe = Executors.newFixedThreadPool(4);
 
         inQueue.incrementAndGet();
-        tpe.submit(new task3.MyRunnable(graph, tpe, inQueue));
+        tpe.submit(new task3.MyRunnable(graph, tpe, inQueue, 0));
     }
 }

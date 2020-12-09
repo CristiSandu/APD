@@ -9,36 +9,34 @@ public class MyRunnavle implements Runnable{
     ExecutorService tpe;
     int[] colors;
     AtomicInteger inQueue;
+    int ok;
 
-    public MyRunnavle(int[] colors , ExecutorService tpe, AtomicInteger inQueue) {
+    public MyRunnavle(int[] colors , ExecutorService tpe, AtomicInteger inQueue, int ok) {
         this.tpe = tpe;
         this.inQueue = inQueue;
         this.colors = colors;
+        this.ok = ok;
     }
 
     @Override
     public void run() {
-            if (inQueue.get() == Main.N) {
+            if (inQueue.get() == ok) {
                 printColors(colors);
                 return;
             }
-
             // for the node at position step try all possible colors
             for (int i = 0; i < Main.COLORS; i++) {
                 int[] newColors = colors.clone();
-                newColors[inQueue.get()] = i;
-                if (verifyColors(newColors, inQueue.get()))
+                newColors[ok] = i;
+                if (verifyColors(newColors, ok))
                     inQueue.incrementAndGet();
-                    tpe.submit(new task2.MyRunnavle(newColors, tpe,inQueue));
-                   // colorGraph(newColors, );
+                    tpe.submit(new task2.MyRunnavle(newColors, tpe,inQueue,ok +1));
             }
 
             int left = inQueue.decrementAndGet();
             if (left == 0) {
                 tpe.shutdown();
             }
-
-
         }
 
         private static boolean verifyColors(int[] colors, int step) {
@@ -64,5 +62,4 @@ public class MyRunnavle implements Runnable{
             }
             System.out.println(aux);
         }
-
 }

@@ -7,35 +7,42 @@ public class MyRunnable implements Runnable {
 	int[] graph;
 	ExecutorService tpe;
 	AtomicInteger inQueue;
+	int ok;
 
-	public MyRunnable(int[] graph, ExecutorService tpe, AtomicInteger inQueue) {
+	public MyRunnable(int[] graph, ExecutorService tpe, AtomicInteger inQueue,int ok) {
 		this.graph = graph;
 		this.tpe = tpe;
 		this.inQueue = inQueue;
+		this.ok = ok;
 	}
 
 	@Override
 	public void run() {
-		if (Main.N == inQueue.get()) {
+		if (Main.N == ok) {
 			printQueens(graph);
-			return;
-		}
-		for (int i = 0; i < Main.N; ++i) {
-			int[] newGraph = graph.clone();
-			newGraph[inQueue.get()] = i;
-
-			if (check(newGraph, inQueue.get())) {
-				inQueue.incrementAndGet();
-				tpe.submit(new task3.MyRunnable(newGraph, tpe, inQueue));
-				//queens(newGraph, step + 1);
-			}
 			int left = inQueue.decrementAndGet();
 			if (left == 0) {
 				tpe.shutdown();
 			}
+
+			return;
 		}
-		/*
-		}*/
+		for (int i = 0; i < Main.N; ++i) {
+			int[] newGraph = graph.clone();
+			newGraph[ok] = i;
+
+			if (check(newGraph, ok)) {
+				inQueue.incrementAndGet();
+				tpe.submit(new task3.MyRunnable(newGraph, tpe, inQueue,ok + 1));
+				//queens(newGraph, step + 1);
+			}
+
+		}
+			int left = inQueue.decrementAndGet();
+			if (left == 0) {
+				tpe.shutdown();
+			}
+
 	}
 
 
