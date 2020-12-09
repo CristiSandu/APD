@@ -1,0 +1,139 @@
+09:24:03.877675 IP host > red: ICMP echo request, id 7106, seq 1, length 64
+09:24:03.877725 IP red > host: ICMP echo reply, id 7106, seq 1, length 64
+09:24:04.879189 IP host > red: ICMP echo request, id 7106, seq 2, length 64
+09:24:04.879204 IP red > host: ICMP echo reply, id 7106, seq 2, length 64
+09:24:05.880551 IP host > red: ICMP echo request, id 7106, seq 3, length 64
+09:24:05.880565 IP red > host: ICMP echo reply, id 7106, seq 3, length 64
+09:24:06.881735 IP host > red: ICMP echo request, id 7106, seq 4, length 64
+09:24:06.881747 IP red > host: ICMP echo reply, id 7106, seq 4, length 64
+09:24:07.883229 IP host > red: ICMP echo request, id 7106, seq 5, length 64
+09:24:07.883255 IP red > host: ICMP echo reply, id 7106, seq 5, length 64
+09:24:08.939791 ARP, Request who-has host tell red, length 28
+09:24:08.939828 ARP, Request who-has red tell host, length 28
+09:24:08.939832 ARP, Reply red is-at ae:c0:b1:f5:71:95 (oui Unknown), length 28
+09:24:08.939833 ARP, Reply host is-at f6:1a:db:ef:fe:99 (oui Unknown), length 28
+09:24:15.225994 IP green > red: ICMP echo request, id 279, seq 1, length 64
+09:24:15.226014 IP red > green: ICMP echo reply, id 279, seq 1, length 64
+09:24:16.227867 IP green > red: ICMP echo request, id 279, seq 2, length 64
+09:24:16.227878 IP red > green: ICMP echo reply, id 279, seq 2, length 64
+09:24:17.229501 IP green > red: ICMP echo request, id 279, seq 3, length 64
+09:24:17.229511 IP red > green: ICMP echo reply, id 279, seq 3, length 64
+09:24:18.251878 IP green > red: ICMP echo request, id 279, seq 4, length 64
+09:24:18.251900 IP red > green: ICMP echo reply, id 279, seq 4, length 64
+09:24:40.226257 IP green.42388 > red.ssh: Flags [S], seq 2416177890, win 42340, options [mss 1460,sackOK,TS val 3928702766 ecr 0,nop,wscale 9], length 0
+09:24:40.226283 IP red.ssh > green.42388: Flags [S.], seq 3604103233, ack 2416177891, win 43440, options [mss 1460,sackOK,TS val 2283590439 ecr 3928702766,nop,wscale 9], length 0
+09:24:40.226316 IP green.42388 > red.ssh: Flags [.], ack 1, win 83, options [nop,nop,TS val 3928702766 ecr 2283590439], length 0
+09:24:40.233618 IP green.42388 > red.ssh: Flags [P.], seq 1:42, ack 1, win 83, options [nop,nop,TS val 3928702773 ecr 2283590439], length 41
+09:24:40.233629 IP red.ssh > green.42388: Flags [.], ack 42, win 85, options [nop,nop,TS val 2283590446 ecr 3928702773], length 0
+09:24:40.260429 IP red.ssh > green.42388: Flags [P.], seq 1:42, ack 42, win 85, options [nop,nop,TS val 2283590473 ecr 3928702773], length 41
+09:24:40.260519 IP green.42388 > red.ssh: Flags [.], ack 42, win 83, options [nop,nop,TS val 3928702800 ecr 2283590473], length 0
+09:24:40.261937 IP green.42388 > red.ssh: Flags [P.], seq 42:1402, ack 42, win 83, options [nop,nop,TS val 3928702801 ecr 2283590473], length 1360
+09:24:40.269267 IP red.ssh > green.42388: Flags [P.], seq 42:1122, ack 1402, win 83, options [nop,nop,TS val 2283590482 ecr 3928702801], length 1080
+09:24:40.275136 IP green.42388 > red.ssh: Flags [P.], seq 1402:1450, ack 1122, win 83, options [nop,nop,TS val 3928702814 ecr 2283590482], length 48
+09:24:40.288542 IP red.ssh > green.42388: Flags [P.], seq 1122:1574, ack 1450, win 83, options [nop,nop,TS val 2283590501 ecr 3928702814], length 452
+09:24:40.331799 IP green.42388 > red.ssh: Flags [.], ack 1574, win 83, options [nop,nop,TS val 3928702871 ecr 2283590501], length 0
+09:24:42.307118 IP green.42388 > red.ssh: Flags [P.], seq 1450:1466, ack 1574, win 83, options [nop,nop,TS val 3928704846 ecr 2283590501], length 16
+09:24:42.347782 IP red.ssh > green.42388: Flags [.], ack 1466, win 83, options [nop,nop,TS val 2283592560 ecr 3928704846], length 0
+09:24:42.347808 IP green.42388 > red.ssh: Flags [P.], seq 1466:1510, ack 1574, win 83, options [nop,nop,TS val 3928704887 ecr 2283592560], length 44
+09:24:42.347812 IP red.ssh > green.42388: Flags [.], ack 1510, win 83, options [nop,nop,TS val 2283592560 ecr 3928704887], length 0
+09:24:42.347908 IP red.ssh > green.42388: Flags [P.], seq 1574:1618, ack 1510, win 83, options [nop,nop,TS val 2283592560 ecr 3928704887], length 44
+09:24:42.347927 IP green.42388 > red.ssh: Flags [.], ack 1618, win 83, options [nop,nop,TS val 3928704887 ecr 2283592560], length 0
+09:24:42.348013 IP green.42388 > red.ssh: Flags [P.], seq 1510:1578, ack 1618, win 83, options [nop,nop,TS val 3928704887 ecr 2283592560], length 68
+09:24:42.350707 IP red.ssh > green.42388: Flags [P.], seq 1618:1670, ack 1578, win 83, options [nop,nop,TS val 2283592563 ecr 3928704887], length 52
+09:24:42.351895 IP green.42388 > red.ssh: Flags [P.], seq 1578:1950, ack 1670, win 83, options [nop,nop,TS val 3928704891 ecr 2283592563], length 372
+09:24:42.360798 IP red.ssh > green.42388: Flags [P.], seq 1670:2002, ack 1950, win 83, options [nop,nop,TS val 2283592573 ecr 3928704891], length 332
+09:24:42.365819 IP green.42388 > red.ssh: Flags [P.], seq 1950:2602, ack 2002, win 83, options [nop,nop,TS val 3928704905 ecr 2283592573], length 652
+09:24:42.368260 IP red.ssh > green.42388: Flags [P.], seq 2002:2030, ack 2602, win 83, options [nop,nop,TS val 2283592581 ecr 3928704905], length 28
+09:24:42.372317 IP green.42388 > red.ssh: Flags [P.], seq 2602:2714, ack 2030, win 83, options [nop,nop,TS val 3928704912 ecr 2283592581], length 112
+09:24:42.415808 IP red.ssh > green.42388: Flags [.], ack 2714, win 83, options [nop,nop,TS val 2283592628 ecr 3928704912], length 0
+09:24:42.446824 IP red.ssh > green.42388: Flags [P.], seq 2030:2530, ack 2714, win 83, options [nop,nop,TS val 2283592659 ecr 3928704912], length 500
+09:24:42.487794 IP green.42388 > red.ssh: Flags [.], ack 2530, win 83, options [nop,nop,TS val 3928705027 ecr 2283592659], length 0
+09:24:42.487806 IP red.ssh > green.42388: Flags [P.], seq 2530:2574, ack 2714, win 83, options [nop,nop,TS val 2283592700 ecr 3928705027], length 44
+09:24:42.487826 IP green.42388 > red.ssh: Flags [.], ack 2574, win 83, options [nop,nop,TS val 3928705027 ecr 2283592700], length 0
+09:24:42.488103 IP green.42388 > red.ssh: Flags [P.], seq 2714:3226, ack 2574, win 83, options [nop,nop,TS val 3928705027 ecr 2283592700], length 512
+09:24:42.488107 IP red.ssh > green.42388: Flags [.], ack 3226, win 83, options [nop,nop,TS val 2283592700 ecr 3928705027], length 0
+09:24:42.565719 IP red.ssh > green.42388: Flags [P.], seq 2574:2682, ack 3226, win 83, options [nop,nop,TS val 2283592778 ecr 3928705027], length 108
+09:24:42.568195 IP red.ssh > green.42388: Flags [P.], seq 2682:2790, ack 3226, win 83, options [nop,nop,TS val 2283592781 ecr 3928705027], length 108
+09:24:42.568261 IP green.42388 > red.ssh: Flags [.], ack 2790, win 83, options [nop,nop,TS val 3928705108 ecr 2283592778], length 0
+09:24:42.569666 IP red.ssh > green.42388: Flags [P.], seq 2790:2826, ack 3226, win 83, options [nop,nop,TS val 2283592782 ecr 3928705108], length 36
+09:24:42.570814 IP red.ssh > green.42388: Flags [P.], seq 2826:2862, ack 3226, win 83, options [nop,nop,TS val 2283592783 ecr 3928705108], length 36
+09:24:42.570885 IP green.42388 > red.ssh: Flags [.], ack 2862, win 83, options [nop,nop,TS val 3928705110 ecr 2283592782], length 0
+09:24:42.572001 IP red.ssh > green.42388: Flags [P.], seq 2862:2938, ack 3226, win 83, options [nop,nop,TS val 2283592784 ecr 3928705110], length 76
+09:24:42.573125 IP red.ssh > green.42388: Flags [P.], seq 2938:2974, ack 3226, win 83, options [nop,nop,TS val 2283592785 ecr 3928705110], length 36
+09:24:42.573184 IP green.42388 > red.ssh: Flags [.], ack 2974, win 83, options [nop,nop,TS val 3928705113 ecr 2283592784], length 0
+09:24:42.574276 IP red.ssh > green.42388: Flags [P.], seq 2974:3058, ack 3226, win 83, options [nop,nop,TS val 2283592787 ecr 3928705113], length 84
+09:24:42.575398 IP red.ssh > green.42388: Flags [P.], seq 3058:3094, ack 3226, win 83, options [nop,nop,TS val 2283592788 ecr 3928705113], length 36
+09:24:42.575456 IP green.42388 > red.ssh: Flags [.], ack 3094, win 83, options [nop,nop,TS val 3928705115 ecr 2283592787], length 0
+09:24:42.576651 IP red.ssh > green.42388: Flags [P.], seq 3094:3178, ack 3226, win 83, options [nop,nop,TS val 2283592789 ecr 3928705115], length 84
+09:24:42.577710 IP red.ssh > green.42388: Flags [P.], seq 3178:3214, ack 3226, win 83, options [nop,nop,TS val 2283592790 ecr 3928705115], length 36
+09:24:42.577767 IP green.42388 > red.ssh: Flags [.], ack 3214, win 83, options [nop,nop,TS val 3928705117 ecr 2283592789], length 0
+09:24:42.578789 IP red.ssh > green.42388: Flags [P.], seq 3214:3322, ack 3226, win 83, options [nop,nop,TS val 2283592791 ecr 3928705117], length 108
+09:24:42.579880 IP red.ssh > green.42388: Flags [P.], seq 3322:3358, ack 3226, win 83, options [nop,nop,TS val 2283592792 ecr 3928705117], length 36
+09:24:42.579938 IP green.42388 > red.ssh: Flags [.], ack 3358, win 83, options [nop,nop,TS val 3928705119 ecr 2283592791], length 0
+09:24:42.580961 IP red.ssh > green.42388: Flags [P.], seq 3358:3450, ack 3226, win 83, options [nop,nop,TS val 2283592793 ecr 3928705119], length 92
+09:24:42.582003 IP red.ssh > green.42388: Flags [P.], seq 3450:3486, ack 3226, win 83, options [nop,nop,TS val 2283592794 ecr 3928705119], length 36
+09:24:42.582062 IP green.42388 > red.ssh: Flags [.], ack 3486, win 83, options [nop,nop,TS val 3928705121 ecr 2283592793], length 0
+09:24:42.583094 IP red.ssh > green.42388: Flags [P.], seq 3486:3522, ack 3226, win 83, options [nop,nop,TS val 2283592795 ecr 3928705121], length 36
+09:24:42.584285 IP red.ssh > green.42388: Flags [P.], seq 3522:3686, ack 3226, win 83, options [nop,nop,TS val 2283592797 ecr 3928705121], length 164
+09:24:42.584343 IP green.42388 > red.ssh: Flags [.], ack 3686, win 83, options [nop,nop,TS val 3928705124 ecr 2283592795], length 0
+09:24:42.587943 IP red.ssh > green.42388: Flags [P.], seq 3686:3930, ack 3226, win 83, options [nop,nop,TS val 2283592800 ecr 3928705124], length 244
+09:24:42.631861 IP green.42388 > red.ssh: Flags [.], ack 3930, win 83, options [nop,nop,TS val 3928705171 ecr 2283592800], length 0
+09:24:42.705959 IP red.ssh > green.42388: Flags [P.], seq 3930:3990, ack 3226, win 83, options [nop,nop,TS val 2283592918 ecr 3928705171], length 60
+09:24:42.706077 IP green.42388 > red.ssh: Flags [.], ack 3990, win 83, options [nop,nop,TS val 3928705245 ecr 2283592918], length 0
+09:24:45.004250 IP green.42388 > red.ssh: Flags [P.], seq 3226:3262, ack 3990, win 83, options [nop,nop,TS val 3928707544 ecr 2283592918], length 36
+09:24:45.004263 IP red.ssh > green.42388: Flags [.], ack 3262, win 83, options [nop,nop,TS val 2283595217 ecr 3928707544], length 0
+09:24:45.004962 IP red.ssh > green.42388: Flags [P.], seq 3990:4026, ack 3262, win 83, options [nop,nop,TS val 2283595217 ecr 3928707544], length 36
+09:24:45.004984 IP green.42388 > red.ssh: Flags [.], ack 4026, win 83, options [nop,nop,TS val 3928707544 ecr 2283595217], length 0
+09:24:45.014021 IP green.42388 > red.ssh: Flags [P.], seq 3262:3298, ack 4026, win 83, options [nop,nop,TS val 3928707553 ecr 2283595217], length 36
+09:24:45.014512 IP red.ssh > green.42388: Flags [P.], seq 4026:4062, ack 3298, win 83, options [nop,nop,TS val 2283595227 ecr 3928707553], length 36
+09:24:45.055802 IP green.42388 > red.ssh: Flags [.], ack 4062, win 83, options [nop,nop,TS val 3928707595 ecr 2283595227], length 0
+09:24:45.109125 IP green.42388 > red.ssh: Flags [P.], seq 3298:3334, ack 4062, win 83, options [nop,nop,TS val 3928707648 ecr 2283595227], length 36
+09:24:45.109613 IP red.ssh > green.42388: Flags [P.], seq 4062:4098, ack 3334, win 83, options [nop,nop,TS val 2283595322 ecr 3928707648], length 36
+09:24:45.109636 IP green.42388 > red.ssh: Flags [.], ack 4098, win 83, options [nop,nop,TS val 3928707649 ecr 2283595322], length 0
+09:24:45.125873 IP red.ssh > green.42388: Flags [P.], seq 4098:4142, ack 3334, win 83, options [nop,nop,TS val 2283595338 ecr 3928707649], length 44
+09:24:45.125913 IP green.42388 > red.ssh: Flags [.], ack 4142, win 83, options [nop,nop,TS val 3928707665 ecr 2283595338], length 0
+09:24:45.127138 IP red.ssh > green.42388: Flags [P.], seq 4142:4178, ack 3334, win 83, options [nop,nop,TS val 2283595339 ecr 3928707665], length 36
+09:24:45.127158 IP green.42388 > red.ssh: Flags [.], ack 4178, win 83, options [nop,nop,TS val 3928707666 ecr 2283595339], length 0
+09:24:45.132031 IP red.ssh > green.42388: Flags [P.], seq 4178:4238, ack 3334, win 83, options [nop,nop,TS val 2283595344 ecr 3928707666], length 60
+09:24:45.132053 IP green.42388 > red.ssh: Flags [.], ack 4238, win 83, options [nop,nop,TS val 3928707671 ecr 2283595344], length 0
+09:24:46.993020 IP green.42388 > red.ssh: Flags [P.], seq 3334:3370, ack 4238, win 83, options [nop,nop,TS val 3928709532 ecr 2283595344], length 36
+09:24:46.993653 IP red.ssh > green.42388: Flags [P.], seq 4238:4274, ack 3370, win 83, options [nop,nop,TS val 2283597206 ecr 3928709532], length 36
+09:24:46.993678 IP green.42388 > red.ssh: Flags [.], ack 4274, win 83, options [nop,nop,TS val 3928709533 ecr 2283597206], length 0
+09:24:47.155544 IP green.42388 > red.ssh: Flags [P.], seq 3370:3406, ack 4274, win 83, options [nop,nop,TS val 3928709695 ecr 2283597206], length 36
+09:24:47.156026 IP red.ssh > green.42388: Flags [P.], seq 4274:4310, ack 3406, win 83, options [nop,nop,TS val 2283597368 ecr 3928709695], length 36
+09:24:47.156049 IP green.42388 > red.ssh: Flags [.], ack 4310, win 83, options [nop,nop,TS val 3928709695 ecr 2283597368], length 0
+09:24:47.462185 IP green.42388 > red.ssh: Flags [P.], seq 3406:3442, ack 4310, win 83, options [nop,nop,TS val 3928710002 ecr 2283597368], length 36
+09:24:47.462690 IP red.ssh > green.42388: Flags [P.], seq 4310:4346, ack 3442, win 83, options [nop,nop,TS val 2283597675 ecr 3928710002], length 36
+09:24:47.462715 IP green.42388 > red.ssh: Flags [.], ack 4346, win 83, options [nop,nop,TS val 3928710002 ecr 2283597675], length 0
+09:24:47.602071 IP green.42388 > red.ssh: Flags [P.], seq 3442:3478, ack 4346, win 83, options [nop,nop,TS val 3928710141 ecr 2283597675], length 36
+09:24:47.602511 IP red.ssh > green.42388: Flags [P.], seq 4346:4382, ack 3478, win 83, options [nop,nop,TS val 2283597815 ecr 3928710141], length 36
+09:24:47.602534 IP green.42388 > red.ssh: Flags [.], ack 4382, win 83, options [nop,nop,TS val 3928710142 ecr 2283597815], length 0
+09:24:47.614942 IP red.ssh > green.42388: Flags [P.], seq 4382:4450, ack 3478, win 83, options [nop,nop,TS val 2283597827 ecr 3928710142], length 68
+09:24:47.614972 IP green.42388 > red.ssh: Flags [.], ack 4450, win 83, options [nop,nop,TS val 3928710154 ecr 2283597827], length 0
+09:24:47.616043 IP red.ssh > green.42388: Flags [P.], seq 4450:4486, ack 3478, win 83, options [nop,nop,TS val 2283597828 ecr 3928710154], length 36
+09:24:47.616063 IP green.42388 > red.ssh: Flags [.], ack 4486, win 83, options [nop,nop,TS val 3928710155 ecr 2283597828], length 0
+09:24:47.621601 IP red.ssh > green.42388: Flags [P.], seq 4486:4546, ack 3478, win 83, options [nop,nop,TS val 2283597834 ecr 3928710155], length 60
+09:24:47.621623 IP green.42388 > red.ssh: Flags [.], ack 4546, win 83, options [nop,nop,TS val 3928710161 ecr 2283597834], length 0
+09:24:48.955012 IP green.42388 > red.ssh: Flags [P.], seq 3478:3514, ack 4546, win 83, options [nop,nop,TS val 3928711494 ecr 2283597834], length 36
+09:24:48.955987 IP red.ssh > green.42388: Flags [P.], seq 4546:4582, ack 3514, win 83, options [nop,nop,TS val 2283599168 ecr 3928711494], length 36
+09:24:48.956016 IP green.42388 > red.ssh: Flags [.], ack 4582, win 83, options [nop,nop,TS val 3928711495 ecr 2283599168], length 0
+09:24:48.957648 IP red.ssh > green.42388: Flags [P.], seq 4582:4618, ack 3514, win 83, options [nop,nop,TS val 2283599170 ecr 3928711495], length 36
+09:24:48.957669 IP green.42388 > red.ssh: Flags [.], ack 4618, win 83, options [nop,nop,TS val 3928711497 ecr 2283599170], length 0
+09:24:48.959152 IP red.ssh > green.42388: Flags [P.], seq 4618:4678, ack 3514, win 83, options [nop,nop,TS val 2283599171 ecr 3928711497], length 60
+09:24:48.959172 IP green.42388 > red.ssh: Flags [.], ack 4678, win 83, options [nop,nop,TS val 3928711499 ecr 2283599171], length 0
+09:24:50.894254 IP green.42388 > red.ssh: Flags [P.], seq 3514:3550, ack 4678, win 83, options [nop,nop,TS val 3928713434 ecr 2283599171], length 36
+09:24:50.899688 IP red.ssh > green.42388: Flags [P.], seq 4678:4722, ack 3550, win 83, options [nop,nop,TS val 2283601112 ecr 3928713434], length 44
+09:24:50.899716 IP green.42388 > red.ssh: Flags [.], ack 4722, win 83, options [nop,nop,TS val 3928713439 ecr 2283601112], length 0
+09:24:50.900909 IP red.ssh > green.42388: Flags [P.], seq 4722:4758, ack 3550, win 83, options [nop,nop,TS val 2283601113 ecr 3928713439], length 36
+09:24:50.900929 IP green.42388 > red.ssh: Flags [.], ack 4758, win 83, options [nop,nop,TS val 3928713440 ecr 2283601113], length 0
+09:24:50.922576 IP red.ssh > green.42388: Flags [P.], seq 4758:4794, ack 3550, win 83, options [nop,nop,TS val 2283601135 ecr 3928713440], length 36
+09:24:50.922615 IP green.42388 > red.ssh: Flags [.], ack 4794, win 83, options [nop,nop,TS val 3928713462 ecr 2283601135], length 0
+09:24:50.923227 IP red.ssh > green.42388: Flags [P.], seq 4794:4934, ack 3550, win 83, options [nop,nop,TS val 2283601136 ecr 3928713462], length 140
+09:24:50.923248 IP green.42388 > red.ssh: Flags [.], ack 4934, win 83, options [nop,nop,TS val 3928713463 ecr 2283601136], length 0
+09:24:50.923458 IP green.42388 > red.ssh: Flags [P.], seq 3550:3586, ack 4934, win 83, options [nop,nop,TS val 3928713463 ecr 2283601136], length 36
+09:24:50.923521 IP green.42388 > red.ssh: Flags [P.], seq 3586:3646, ack 4934, win 83, options [nop,nop,TS val 3928713463 ecr 2283601136], length 60
+09:24:50.923607 IP green.42388 > red.ssh: Flags [F.], seq 3646, ack 4934, win 83, options [nop,nop,TS val 3928713463 ecr 2283601136], length 0
+09:24:50.930529 IP red.ssh > green.42388: Flags [.], ack 3647, win 83, options [nop,nop,TS val 2283601143 ecr 3928713463], length 0
+09:24:50.942115 IP red.ssh > green.42388: Flags [F.], seq 4934, ack 3647, win 83, options [nop,nop,TS val 2283601154 ecr 3928713463], length 0
+09:24:50.942165 IP green.42388 > red.ssh: Flags [.], ack 4935, win 83, options [nop,nop,TS val 3928713481 ecr 2283601154], length 0
+
