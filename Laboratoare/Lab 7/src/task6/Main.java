@@ -1,8 +1,10 @@
 package task6;
 
+import java.util.concurrent.ForkJoinPool;
+
 public class Main {
     public static int N = 4;
-
+/*
     private static boolean check(int[] arr, int step) {
         for (int i = 0; i <= step; i++) {
             for (int j = i + 1; j <= step; j++) {
@@ -35,9 +37,13 @@ public class Main {
                 queens(newGraph, step + 1);
             }
         }
-    }
+    }*/
     public static void main(String[] args) {
         int[] graph = new int[N];
-        queens(graph, 0);
+        //queens(graph, 0);
+
+        ForkJoinPool fjp = new ForkJoinPool(4);
+        fjp.invoke(new task6.MTask(graph,0));
+        fjp.shutdown();
     }
 }
