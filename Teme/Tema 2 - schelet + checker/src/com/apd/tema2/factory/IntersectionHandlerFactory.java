@@ -39,7 +39,7 @@ public class IntersectionHandlerFactory {
                     {
                     }
 
-                    String end = "Car " + car.getId() + "has waited enough, now driving...";
+                    String end = "Car " + car.getId() + " has waited enough, now driving...";
                     System.out.println(end);
                 }
             };
