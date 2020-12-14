@@ -39,6 +39,9 @@ public class ReaderHandlerFactory {
                 public void handle(final String handlerType, final BufferedReader br) throws IOException {
                     // To parse input line use:
                     // String[] line = br.readLine().split(" ");
+                    String[] line = br.readLine().split(" ");
+
+                    Main.intersection = new IntersectionC2(Integer.parseInt(line[0]),Integer.parseInt(line[1]));
                 }
             };
             case "simple_strict_1_car_roundabout" -> new ReaderHandler() {

@@ -5,6 +5,9 @@ import com.apd.tema2.entities.*;
 import com.apd.tema2.intersections.*;
 import com.apd.tema2.utils.Constants;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.Semaphore;
+
 import static java.lang.Thread.sleep;
 
 /**
@@ -52,7 +55,24 @@ public class IntersectionHandlerFactory {
             case "simple_strict_1_car_roundabout" -> new IntersectionHandler() {
                 @Override
                 public void handle(Car car) {
+                    String start  = "Car " + car.getId() + " has reached the roundabout, now waiting...";
+                    IntersectionC2 inter =  (IntersectionC2)Main.intersection;
+                    try {
+                        inter.getSemaphor().acquire();
+                    }catch (InterruptedException exc)
+                    {
 
+                    }
+                    String middel  = "Car " + car.getId() + " has entered the roundabout";
+                    synchronized (this) {
+                        try{
+                            sleep(inter.getTime());
+                        }catch (Exception ex) {
+                        }
+                        inter.getSemaphor().release();
+                        String end  = "Car " + car.getId() + " has exited the roundabout after " + inter.getTime() / 1000 + " seconds";
+
+                        }
                 }
             };
             case "simple_strict_x_car_roundabout" -> new IntersectionHandler() {
