@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Tema 2 - schelet + checker">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Tema2Checker_J8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Tema2Checker_J8_Win.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
