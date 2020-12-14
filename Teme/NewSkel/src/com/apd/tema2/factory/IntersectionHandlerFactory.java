@@ -31,7 +31,16 @@ public class IntersectionHandlerFactory {
             case "simple_semaphore" -> new IntersectionHandler() {
                 @Override
                 public void handle(Car car) {
+                    String start  = "Car " + car.getId() + " has reached the semaphore, now waiting...";
+                    System.out.println(start);
+                    try {
+                        sleep(car.getWaitingTime());
+                    }catch (Exception ex)
+                    {
+                    }
 
+                    String end = "Car " + car.getId() + "has waited enough, now driving...";
+                    System.out.println(end);
                 }
             };
             case "simple_n_roundabout" -> new IntersectionHandler() {
