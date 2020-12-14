@@ -24,4 +24,4 @@ do
 done
 
 cd ..
-java -jar ./Tema2Checker.jar
+java -jar ./Tema2Checker_J15.jar
