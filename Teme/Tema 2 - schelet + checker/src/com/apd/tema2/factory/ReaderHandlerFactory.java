@@ -47,7 +47,8 @@ public class ReaderHandlerFactory {
             case "simple_strict_1_car_roundabout" -> new ReaderHandler() {
                 @Override
                 public void handle(final String handlerType, final BufferedReader br) throws IOException {
-
+                    String[] line = br.readLine().split(" ");
+                    Main.intersection = new IntersectionC3(Integer.parseInt(line[0]),Integer.parseInt(line[1]));
                 }
             };
             case "simple_strict_x_car_roundabout" -> new ReaderHandler() {
