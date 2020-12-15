@@ -20,11 +20,11 @@ public class IntersectionC4 implements Intersection {
     {
         this.n = n;
         this.t = t;
-        sem = new Semaphore(x);
+//        sem = new Semaphore(x);
         bar2 = new CyclicBarrier(x*n);
         for (int i = 0 ; i < n; i++)
         {
-            vectSem.add(sem);
+            vectSem.add(new Semaphore(x));
 
         }
     }

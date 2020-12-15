@@ -119,13 +119,13 @@ public class IntersectionHandlerFactory {
                     }
 
                     try {
-                        semS.get(car.getPriority()).acquire();
+                        semS.get(car.getStartDirection()).acquire();
                     } catch (InterruptedException exc) {
 
                     }
 
 
-                    String middel1 = "Car " + car.getId() + " was selected to enter the roundabout from lane " + car.getPriority();
+                    String middel1 = "Car " + car.getId() + " was selected to enter the roundabout from lane " + car.getStartDirection();
                     System.out.println(middel1);
                     try {
                         inter.getCyclicBarr2().await();
@@ -133,7 +133,7 @@ public class IntersectionHandlerFactory {
                         e.printStackTrace();
                     }
 
-                    String middel2 = "Car " + car.getId() + " has entered the roundabout from lane " + car.getPriority();
+                    String middel2 = "Car " + car.getId() + " has entered the roundabout from lane " + car.getStartDirection();
                     System.out.println(middel2);
                     try {
                         inter.getCyclicBarr2().await();
@@ -153,7 +153,7 @@ public class IntersectionHandlerFactory {
                     } catch (InterruptedException | BrokenBarrierException e) {
                         e.printStackTrace();
                     }
-                    semS.get(car.getPriority()).release();
+                    semS.get(car.getStartDirection()).release();
                 }
             };
             case "simple_max_x_car_roundabout" -> new IntersectionHandler() {
