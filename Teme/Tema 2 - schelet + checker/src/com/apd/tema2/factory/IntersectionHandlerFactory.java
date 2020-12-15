@@ -49,12 +49,6 @@ public class IntersectionHandlerFactory {
             case "simple_n_roundabout" -> new IntersectionHandler() {
                 @Override
                 public void handle(Car car) {
-
-                }
-            };
-            case "simple_strict_1_car_roundabout" -> new IntersectionHandler() {
-                @Override
-                public void handle(Car car) {
                     String start  = "Car " + car.getId() + " has reached the roundabout, now waiting...";
                     System.out.println(start);
                     IntersectionC2 inter =  (IntersectionC2)Main.intersection;
@@ -68,15 +62,19 @@ public class IntersectionHandlerFactory {
                     System.out.println(middel);
 
                     synchronized (this) {
-                        try{
+                        try {
                             sleep(inter.getTime());
-                        }catch (Exception ex) {
+                        } catch (Exception ex) {
                         }
                         inter.getSemaphor().release();
-                        String end  = "Car " + car.getId() + " has exited the roundabout after " + inter.getTime() / 1000 + " seconds";
+                        String end = "Car " + car.getId() + " has exited the roundabout after " + inter.getTime() / 1000 + " seconds";
                         System.out.println(end);
-
                     }
+                }
+            };
+            case "simple_strict_1_car_roundabout" -> new IntersectionHandler() {
+                @Override
+                public void handle(Car car) {
                 }
             };
             case "simple_strict_x_car_roundabout" -> new IntersectionHandler() {
