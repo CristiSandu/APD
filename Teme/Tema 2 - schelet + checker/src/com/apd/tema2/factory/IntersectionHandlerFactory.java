@@ -6,6 +6,7 @@ import com.apd.tema2.intersections.*;
 import com.apd.tema2.utils.Constants;
 
 import java.util.Vector;
+import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Semaphore;
 
@@ -35,12 +36,11 @@ public class IntersectionHandlerFactory {
             case "simple_semaphore" -> new IntersectionHandler() {
                 @Override
                 public void handle(Car car) {
-                    String start  = "Car " + car.getId() + " has reached the semaphore, now waiting...";
+                    String start = "Car " + car.getId() + " has reached the semaphore, now waiting...";
                     System.out.println(start);
                     try {
                         sleep(car.getWaitingTime());
-                    }catch (Exception ex)
-                    {
+                    } catch (Exception ex) {
                     }
 
                     String end = "Car " + car.getId() + " has waited enough, now driving...";
@@ -50,18 +50,17 @@ public class IntersectionHandlerFactory {
             case "simple_n_roundabout" -> new IntersectionHandler() {
                 @Override
                 public void handle(Car car) {
-                    IntersectionC2 inter =  (IntersectionC2)Main.intersection;
-                    String start  = "Car " + car.getId() + " has reached the roundabout, now waiting...";
+                    IntersectionC2 inter = (IntersectionC2) Main.intersection;
+                    String start = "Car " + car.getId() + " has reached the roundabout, now waiting...";
                     System.out.println(start);
 
                     try {
                         inter.getSemaphor().acquire();
-                    }catch (InterruptedException exc)
-                    {
+                    } catch (InterruptedException exc) {
 
                     }
 
-                    String middel  = "Car " + car.getId() + " has entered the roundabout";
+                    String middel = "Car " + car.getId() + " has entered the roundabout";
                     System.out.println(middel);
 
 
@@ -77,20 +76,19 @@ public class IntersectionHandlerFactory {
             case "simple_strict_1_car_roundabout" -> new IntersectionHandler() {
                 @Override
                 public void handle(Car car) {
-                    IntersectionC3 inter =  (IntersectionC3)Main.intersection;
+                    IntersectionC3 inter = (IntersectionC3) Main.intersection;
                     Vector<Semaphore> semS = inter.getSemaphors();
 
-                    String start  = "Car " + car.getId() + " has reached the roundabout";
+                    String start = "Car " + car.getId() + " has reached the roundabout";
                     System.out.println(start);
 
                     try {
                         semS.get(car.getPriority()).acquire();
-                    }catch (InterruptedException exc)
-                    {
+                    } catch (InterruptedException exc) {
 
                     }
 
-                    String middel  = "Car " + car.getId() + " has entered the roundabout from lane "+ car.getPriority();
+                    String middel = "Car " + car.getId() + " has entered the roundabout from lane " + car.getPriority();
                     System.out.println(middel);
 
 
@@ -108,7 +106,54 @@ public class IntersectionHandlerFactory {
             case "simple_strict_x_car_roundabout" -> new IntersectionHandler() {
                 @Override
                 public void handle(Car car) {
+                    IntersectionC4 inter = (IntersectionC4) Main.intersection;
+                    Vector<Semaphore> semS = inter.getSemaphors();
 
+                    String start = "Car " + car.getId() + " has reached the roundabout";
+                    System.out.println(start);
+
+                    try {
+                        inter.getCyclicBarr().await();
+                    } catch (InterruptedException | BrokenBarrierException e) {
+                        e.printStackTrace();
+                    }
+
+                    try {
+                        semS.get(car.getPriority()).acquire();
+                    } catch (InterruptedException exc) {
+
+                    }
+
+
+                    String middel1 = "Car " + car.getId() + " was selected to enter the roundabout from lane " + car.getPriority();
+                    System.out.println(middel1);
+                    try {
+                        inter.getCyclicBarr2().await();
+                    } catch (InterruptedException | BrokenBarrierException e) {
+                        e.printStackTrace();
+                    }
+
+                    String middel2 = "Car " + car.getId() + " has entered the roundabout from lane " + car.getPriority();
+                    System.out.println(middel2);
+                    try {
+                        inter.getCyclicBarr2().await();
+                    } catch (InterruptedException | BrokenBarrierException e) {
+                        e.printStackTrace();
+                    }
+
+
+                    try {
+                        sleep(inter.getTime());
+                    } catch (Exception ex) {
+                    }
+                    String end = "Car " + car.getId() + " has exited the roundabout after " + inter.getTime() / 1000 + " seconds";
+                    System.out.println(end);
+                    try {
+                        inter.getCyclicBarr2().await();
+                    } catch (InterruptedException | BrokenBarrierException e) {
+                        e.printStackTrace();
+                    }
+                    semS.get(car.getPriority()).release();
                 }
             };
             case "simple_max_x_car_roundabout" -> new IntersectionHandler() {
@@ -142,25 +187,25 @@ public class IntersectionHandlerFactory {
             case "crosswalk" -> new IntersectionHandler() {
                 @Override
                 public void handle(Car car) {
-                    
+
                 }
             };
             case "simple_maintenance" -> new IntersectionHandler() {
                 @Override
                 public void handle(Car car) {
-                    
+
                 }
             };
             case "complex_maintenance" -> new IntersectionHandler() {
                 @Override
                 public void handle(Car car) {
-                    
+
                 }
             };
             case "railroad" -> new IntersectionHandler() {
                 @Override
                 public void handle(Car car) {
-                    
+
                 }
             };
             default -> null;
