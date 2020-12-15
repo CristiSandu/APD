@@ -109,7 +109,7 @@ public class IntersectionHandlerFactory {
                     IntersectionC4 inter = (IntersectionC4) Main.intersection;
                     Vector<Semaphore> semS = inter.getSemaphors();
 
-                    String start = "Car " + car.getId() + " has reached the roundabout";
+                    String start = "Car " + car.getId() + " has reached the roundabout, now waiting...";
                     System.out.println(start);
 
                     try {
