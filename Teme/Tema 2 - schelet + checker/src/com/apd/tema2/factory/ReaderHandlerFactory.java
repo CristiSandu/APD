@@ -40,7 +40,6 @@ public class ReaderHandlerFactory {
                     // To parse input line use:
                     // String[] line = br.readLine().split(" ");
                     String[] line = br.readLine().split(" ");
-
                     Main.intersection = new IntersectionC2(Integer.parseInt(line[0]),Integer.parseInt(line[1]));
                 }
             };
@@ -61,25 +60,30 @@ public class ReaderHandlerFactory {
             case "simple_max_x_car_roundabout" -> new ReaderHandler() {
                 @Override
                 public void handle(final String handlerType, final BufferedReader br) throws IOException {
-                    
+                    String[] line = br.readLine().split(" ");
+                    Main.intersection = new IntersectionC4(Integer.parseInt(line[0]),Integer.parseInt(line[1]),Integer.parseInt(line[2]));
                 }
             };
             case "priority_intersection" -> new ReaderHandler() {
                 @Override
                 public void handle(final String handlerType, final BufferedReader br) throws IOException {
-                    
+                    String[] line = br.readLine().split(" ");
+                    Main.intersection = new IntersectionC6();
                 }
             };
             case "crosswalk" -> new ReaderHandler() {
                 @Override
                 public void handle(final String handlerType, final BufferedReader br) throws IOException {
-                    
+                    String[] line = br.readLine().split(" ");
+                    Main.intersection = new IntersectionC7(Integer.parseInt(line[0]),Integer.parseInt(line[1]));
+                    Main.pedestrians = new Pedestrians(Integer.parseInt(line[0]),Integer.parseInt(line[1]));
                 }
             };
             case "simple_maintenance" -> new ReaderHandler() {
                 @Override
                 public void handle(final String handlerType, final BufferedReader br) throws IOException {
-                    
+                    String[] line = br.readLine().split(" ");
+                    Main.intersection = new IntersectionC8(Integer.parseInt(line[0]));
                 }
             };
             case "complex_maintenance" -> new ReaderHandler() {
@@ -91,7 +95,7 @@ public class ReaderHandlerFactory {
             case "railroad" -> new ReaderHandler() {
                 @Override
                 public void handle(final String handlerType, final BufferedReader br) throws IOException {
-                    
+                    Main.intersection = new IntersectionC10();
                 }
             };
             default -> null;

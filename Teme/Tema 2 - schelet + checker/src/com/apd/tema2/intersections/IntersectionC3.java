@@ -17,9 +17,9 @@ public class IntersectionC3 implements Intersection {
         this.n = n;
         this.t = t;
         sem = new Semaphore(1);
-        for (int i = 0 ; i < n; i++)
+        for (int i = 0 ; i < n; i++) //fac cate un semafor pentru fecare cale
         {
-            vectSem.add(sem);
+            vectSem.add(sem); // si pun in vector
         }
     }
 

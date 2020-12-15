@@ -1,5 +1,7 @@
 package com.apd.tema2.entities;
 
+import com.apd.tema2.Main;
+import com.apd.tema2.intersections.IntersectionC7;
 import com.apd.tema2.utils.Constants;
 
 import static java.lang.Thread.sleep;
@@ -30,16 +32,34 @@ public class Pedestrians implements Runnable {
 
                 if(pedestriansNo == maxPedestriansNo) {
                     pedestriansNo = 0;
-                    pass = true;
+                    synchronized (this) {
+                       /* try {
+                            IntersectionC7 inter = (IntersectionC7) Main.intersection;
+                            inter.getSemaphor().acquire();
+                        } catch (InterruptedException ex) {
+                        }*/
+                        pass = true;
+                    }
                     sleep(Constants.PEDESTRIAN_PASSING_TIME);
-                    pass = false;
+                    synchronized (this) {
+                        /*try {
+                            IntersectionC7 inter = (IntersectionC7) Main.intersection;
+                            inter.getSemaphor().acquire();
+                        } catch (InterruptedException ex) {
+                        }*/
+                        pass = false;
+
+                    }
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
 
-        finished = true;
+        synchronized (this) {
+            finished = true;
+        }
+        //System.out.println("STOPPPPPPPPPPP");
     }
 
     public boolean isPass() {
