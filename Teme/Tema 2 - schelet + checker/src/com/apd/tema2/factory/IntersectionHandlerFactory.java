@@ -61,15 +61,16 @@ public class IntersectionHandlerFactory {
                     String middel  = "Car " + car.getId() + " has entered the roundabout";
                     System.out.println(middel);
 
-                    synchronized (this) {
-                        try {
-                            sleep(inter.getTime());
-                        } catch (Exception ex) {
-                        }
-                        inter.getSemaphor().release();
-                        String end = "Car " + car.getId() + " has exited the roundabout after " + inter.getTime() / 1000 + " seconds";
-                        System.out.println(end);
+
+                    try {
+                        sleep(inter.getTime());
+                    } catch (Exception ex) {
                     }
+                    String end = "Car " + car.getId() + " has exited the roundabout after " + inter.getTime() / 1000 + " seconds";
+
+                    inter.getSemaphor().release();
+                    System.out.println(end);
+
                 }
             };
             case "simple_strict_1_car_roundabout" -> new IntersectionHandler() {

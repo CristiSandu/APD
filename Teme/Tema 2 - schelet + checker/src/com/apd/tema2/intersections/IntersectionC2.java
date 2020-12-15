@@ -13,7 +13,7 @@ public class IntersectionC2 implements Intersection {
     {
         this.n = n;
         this.t = t;
-        sem = new Semaphore(n - 1);
+        sem = new Semaphore(n );
     }
 
 
