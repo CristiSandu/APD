@@ -12,8 +12,8 @@ import static java.lang.Thread.sleep;
 public class Pedestrians implements Runnable {
     private int pedestriansNo = 0;
     private int maxPedestriansNo;
-    private boolean pass = false;
-    private boolean finished = false;
+    private volatile boolean pass = false;
+    private volatile boolean finished = false;
     private int executeTime;
     private long startTime;
 
@@ -25,41 +25,22 @@ public class Pedestrians implements Runnable {
 
     @Override
     public void run() {
-        while(System.currentTimeMillis() - startTime < executeTime) {
+        while (System.currentTimeMillis() - startTime < executeTime) {
             try {
                 pedestriansNo++;
                 sleep(Constants.PEDESTRIAN_COUNTER_TIME);
 
-                if(pedestriansNo == maxPedestriansNo) {
+                if (pedestriansNo == maxPedestriansNo) {
                     pedestriansNo = 0;
-                    synchronized (this) {
-                       /* try {
-                            IntersectionC7 inter = (IntersectionC7) Main.intersection;
-                            inter.getSemaphor().acquire();
-                        } catch (InterruptedException ex) {
-                        }*/
-                        pass = true;
-                    }
+                    pass = true;
                     sleep(Constants.PEDESTRIAN_PASSING_TIME);
-                    synchronized (this) {
-                        /*try {
-                            IntersectionC7 inter = (IntersectionC7) Main.intersection;
-                            inter.getSemaphor().acquire();
-                        } catch (InterruptedException ex) {
-                        }*/
-                        pass = false;
-
-                    }
+                    pass = false;
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-
-        synchronized (this) {
-            finished = true;
-        }
-        //System.out.println("STOPPPPPPPPPPP");
+        finished = true;
     }
 
     public boolean isPass() {

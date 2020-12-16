@@ -234,22 +234,19 @@ public class IntersectionHandlerFactory {
                     String green = "Car " + car.getId() + " has now green light";
                     String red = "Car " + car.getId() + " has now red light";
                     IntersectionC7 inter = (IntersectionC7) Main.intersection;
-
+                    inter.setLastElem(0);
                     //cat timp nu au terminat de trecut pietoni
+                    System.out.println(green);
                     while (!Main.pedestrians.isFinished()) {
-                        inter.getSemaphor().release();  // dau relese la semafor
-                        if (Main.pedestrians.isPass()) {  // daca sunt in trecere
-                            if (inter.getLastElem() == 1) { // si culaorea trecuta a fost verde
+                        if (Main.pedestrians.isPass() && inter.getLastElem() == 0) {  // daca sunt in trecere
                                 System.out.println(red); // afisam mesajul ca sa pus semaforul
-                                inter.setLastElem(0); // si schimbam culoarea
-                            }
-                        } else { // altfel daca nu trec
-                            if (inter.getLastElem() == 0) { // vreificam daca culoarea nu este verde
+                                inter.setLastElem(1); // si schimbam culoarea
+                            //}
+                        } else if (inter.getLastElem() == 1 && !Main.pedestrians.isPass()) { // altfel daca nu trec
+                             // vreificam daca culoarea nu este verde
                                 System.out.println(green);// daca da afisam mesajul de green
-                                inter.setLastElem(1); // si schimbam culoarea salvata
-                            }
+                                inter.setLastElem(0); // si schimbam culoarea salvata
                         }
-                        inter.setSemaphore();// resetam semforul pentru mergerea in cerc a masinilor
                     }
                 }
             };
