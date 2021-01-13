@@ -1,11 +1,12 @@
-#include<mpi.h>
-#include<stdio.h>
-#include<stdlib.h>
-#include<math.h>
+#include <mpi.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 
 #define MASTER 0
 
-int main(int argc, char * argv[]) {
+int main(int argc, char *argv[])
+{
 	int rank;
 	int nProcesses;
 	MPI_Init(&argc, &argv);
@@ -14,7 +15,8 @@ int main(int argc, char * argv[]) {
 	MPI_Comm_size(MPI_COMM_WORLD, &nProcesses);
 	printf("Hello from %i/%i\n", rank, nProcesses);
 
-	if (rank == MASTER) { // This code is run by a single process
+	if (rank == MASTER)
+	{ // This code is run by a single process
 		int polynomialSize, n;
 		int x = 5; // valoarea cu care se calculeaza polinomul - f(5)
 
@@ -26,29 +28,35 @@ int main(int argc, char * argv[]) {
 			etc.
 		*/
 
-		FILE * polFunctionFile = fopen(argv[1], "rt");
+		FILE *polFunctionFile = fopen(argv[1], "rt");
 		fscanf(polFunctionFile, "%d", &polynomialSize);
 		/*
 			in array-ul a se vor salva coeficientii ecuatiei / polinomului
 			de exemplu: a = {1, 4, 4} => 1 * (x ^ 2) + 4 * (x ^ 1) + 4 * (x ^ 0)
 		*/
-		float *a = malloc(sizeof(float)*polynomialSize);
-		for (int i = 0; i < polynomialSize; i++) {
+		float *a = malloc(sizeof(float) * polynomialSize);
+		for (int i = 0; i < polynomialSize; i++)
+		{
 			fscanf(polFunctionFile, "%f", &a[i]);
 			printf("Read value %f\n", a[i]);
 			/*
 				Se trimit coeficientii pentru x^1, x^2 etc. proceselor 1, 2 etc.
 				Procesul 0 se ocupa de x^0 si are valoarea coeficientului lui x^0
 			*/
+			MPI_Send(&a[i], 1, MPI_INT, i, 0, MPI_COMM_WORLD);
 		}
 
 		fclose(polFunctionFile);
 
 		// Se trimit valorile x si suma partiala (in acest caz valoarea coeficientului lui x^0)
-	} else {
-		float val, sum;
+		MPI_Send(&x, 1, MPI_INT, 1, 0, MPI_COMM_WORLD);
+		MPI_Send(&a[0], 1, MPI_INT, 1, 0, MPI_COMM_WORLD);
+	}
+	else
+	{
+		float val, sum, c;
 		int x;
-
+		MPI_Status status;
 		/*
 			se primesc: 
 			- coeficientul corespunzator procesului (exemplu procesul 1 primeste coeficientul lui x^1)
@@ -57,11 +65,19 @@ int main(int argc, char * argv[]) {
 			si se calculeaza valoarea corespunzatoare pentru c * x^r, r fiind rangul procesului curent
 			si c fiind coeficientul lui x^r, si se aduna la suma
 		*/
-
-		if (rank == nProcesses - 1) {
+		MPI_Recv(&val, 1, MPI_INT, rank - 1, 0, MPI_COMM_WORLD, &status);
+		MPI_Recv(&x, 1, MPI_INT, rank - 1, 0, MPI_COMM_WORLD, &status);
+		MPI_Recv(&sum, 1, MPI_INT, rank - 1, 0, MPI_COMM_WORLD, &status);
+		sum += val * pow(x, rank);
+		if (rank == nProcesses - 1)
+		{
 			printf("Polynom value is %f\n", sum);
-		} else {
+		}
+		else
+		{
 			// se trimit x si suma partiala catre urmatorul proces
+			MPI_Send(&x, 1, MPI_INT, rank + 1, 0, MPI_COMM_WORLD);
+			MPI_Send(&sum, 1, MPI_INT, rank + 1, 0, MPI_COMM_WORLD);
 		}
 	}
 

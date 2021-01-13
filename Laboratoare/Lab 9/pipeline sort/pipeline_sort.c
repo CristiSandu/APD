@@ -1,14 +1,17 @@
-#include<mpi.h>
-#include<stdio.h>
-#include<stdlib.h>
+#include <mpi.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 int N;
 
-void compareVectors(int * a, int * b) {
+void compareVectors(int *a, int *b)
+{
 	// DO NOT MODIFY
 	int i;
-	for(i = 0; i < N; i++) {
-		if(a[i]!=b[i]) {
+	for (i = 0; i < N; i++)
+	{
+		if (a[i] != b[i])
+		{
 			printf("Sorted incorrectly\n");
 			return;
 		}
@@ -16,24 +19,28 @@ void compareVectors(int * a, int * b) {
 	printf("Sorted correctly\n");
 }
 
-void displayVector(int * v) {
+void displayVector(int *v)
+{
 	// DO NOT MODIFY
 	int i;
-	for(i = 0; i < N; i++) {
+	for (i = 0; i < N; i++)
+	{
 		printf("%d ", v[i]);
 	}
 	printf("\n");
 }
 
-int cmp(const void *a, const void *b) {
+int cmp(const void *a, const void *b)
+{
 	// DO NOT MODIFY
-	int A = *(int*)a;
-	int B = *(int*)b;
-	return A-B;
+	int A = *(int *)a;
+	int B = *(int *)b;
+	return A - B;
 }
 
 // Use 'mpirun -np 20 --oversubscribe ./pipeline_sort' to run the application with more processes
-int main(int argc, char * argv[]) {
+int main(int argc, char *argv[])
+{
 	int rank;
 	int nProcesses;
 	MPI_Init(&argc, &argv);
@@ -42,36 +49,91 @@ int main(int argc, char * argv[]) {
 	MPI_Comm_size(MPI_COMM_WORLD, &nProcesses);
 	printf("Hello from %i/%i\n", rank, nProcesses);
 
-	if (rank == 0) { // This code is run by a single process
+	if (rank == 0)
+	{ // This code is run by a single process
 		int intialValue = -1;
+		MPI_Status status;
 		int sorted = 0;
-		int aux;
-		int *v = (int*)malloc(sizeof(int) * (nProcesses - 1));
-		int *vQSort = (int*)malloc(sizeof(int) * (nProcesses - 1));
+		int aux = 0, recv;
+		int *v = (int *)malloc(sizeof(int) * (nProcesses - 1));
+		int *vQSort = (int *)malloc(sizeof(int) * (nProcesses - 1));
 		int i, val;
 
 		// generate the vector v with random values
 		// DO NOT MODIFY
 		srandom(42);
-		for(i = 0; i < nProcesses - 1; i++)
+		for (i = 0; i < nProcesses - 1; i++)
 			v[i] = random() % 200;
 		N = nProcesses - 1;
 		displayVector(v);
 
 		// make copy to check it against qsort
 		// DO NOT MODIFY
-		for(i = 0; i < nProcesses - 1; i++)
+		for (i = 0; i < nProcesses - 1; i++)
 			vQSort[i] = v[i];
 		qsort(vQSort, nProcesses - 1, sizeof(int), cmp);
 
 		// TODO sort the vector v
+		MPI_Send(&v, nProcesses - 1, MPI_INT, 1, 0, MPI_COMM_WORLD);
+		for (int i = 1; i < nProcesses - 1; i++)
+		{
+			MPI_Send(&intialValue, 1, MPI_INT, i, 0, MPI_COMM_WORLD);
+		}
 
+		MPI_Recv(&recv, 1, MPI_INT, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, &status);
+		v[aux] = recv;
+		aux++;
+		//MPI_Send(&value, 1, MPI_INT, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD);
 
 		displayVector(v);
 		compareVectors(v, vQSort);
-	} else {
+	}
+	else
+	{
+		int actual_value, recv_value;
+		MPI_Status status;
+
+		if (rank == 1)
+		{
+			int *a = (int *)malloc(sizeof(int) * (nProcesses - 1));
+			MPI_Recv(&a, nProcesses - 1, MPI_INT, 0, 0, MPI_COMM_WORLD, &status);
+			MPI_Recv(&actual_value, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, &status);
+			for (int i = 0; i < nProcesses - 1; i++)
+			{
+				if (actual_value == -1)
+				{
+					actual_value = a[i];
+				}
+				else if (actual_value <= a[i])
+				{
+					MPI_Send(&a[i], 1, MPI_INT, rank + 1, 0, MPI_COMM_WORLD);
+				}
+				else
+				{
+					MPI_Send(&actual_value, 1, MPI_INT, 0, 0, MPI_COMM_WORLD);
+					actual_value = a[i];
+				}
+			}
+		}
+		else
+		{
+			MPI_Recv(&actual_value, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, &status);
+			MPI_Recv(&recv_value, 1, MPI_INT, 0, rank - 1, MPI_COMM_WORLD, &status);
+			if (actual_value == -1)
+			{
+				actual_value = recv_value;
+			}
+			else if (actual_value <= recv_value)
+			{
+				MPI_Send(&recv_value, 1, MPI_INT, rank + 1, 0, MPI_COMM_WORLD);
+			}
+			else
+			{
+				MPI_Send(&recv_value, 1, MPI_INT, 0, 0, MPI_COMM_WORLD);
+				actual_value = recv_value;
+			}
+		}
 		// TODO sort the vector v
-		
 	}
 
 	MPI_Finalize();

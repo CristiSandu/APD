@@ -4,7 +4,7 @@
 
 #define MASTER 0
 
-int main (int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     int procs, rank;
 
@@ -13,16 +13,25 @@ int main (int argc, char *argv[])
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 
     int value = rank;
-
-    for (int i = 2; i <= procs; i *= 2) {
-        // TODO
+    int recv_num;
+    for (int i = 2; i <= procs; i *= 2)
+    {
+        if (rank % i == 0)
+        {
+            MPI_Status status;
+            MPI_Recv(&recv_num, 1, MPI_INT, rank + (i / 2), 0, MPI_COMM_WORLD, &status);
+            value += recv_num;
+        }
+        else if (rank % (i / 2) == 0)
+        {
+            MPI_Send(&value, 1, MPI_INT, rank - (i / 2), 0, MPI_COMM_WORLD);
+        }
     }
 
-    if (rank == MASTER) {
+    if (rank == MASTER)
+    {
         printf("Result = %d\n", value);
     }
 
     MPI_Finalize();
-
 }
-
