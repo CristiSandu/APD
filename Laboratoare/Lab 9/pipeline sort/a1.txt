@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 Hello from 1/2
 Hello from 0/2
 166 
 166 
 Sorted correctly
+=======
+Hello from 0/2
+166 
+166 
+Sorted correctly
+Hello from 1/2
+>>>>>>> 569707b765d148675cd5d68e6320b460c457dbff

@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 	MPI_Comm_size(MPI_COMM_WORLD, &nProcesses);
 	printf("Hello from %i/%i\n", rank, nProcesses);
-
+	int *a = (int *)malloc(sizeof(int) * (nProcesses - 1));
 	if (rank == 0)
 	{ // This code is run by a single process
 		int intialValue = -1;
@@ -76,6 +76,7 @@ int main(int argc, char *argv[])
 		// TODO sort the vector v
 		//MPI_Send(&v, nProcesses - 1, MPI_INT, 1, 0, MPI_COMM_WORLD);
 		for (int i = 0; i < nProcesses - rank; i++)
+
 		{
 			MPI_Send(&v[i], 1, MPI_INT, 1, 0, MPI_COMM_WORLD);
 		}
@@ -84,6 +85,7 @@ int main(int argc, char *argv[])
 		{
 			MPI_Recv(&v[i - 1], 1, MPI_INT, i, 0, MPI_COMM_WORLD, &status);
 		}
+		MPI_Send(&v, nProcesses - 1, MPI_INT, 1, 0, MPI_COMM_WORLD);
 
 		//MPI_Send(&value, 1, MPI_INT, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD);
 
@@ -98,6 +100,7 @@ int main(int argc, char *argv[])
 		for (int i = 0; i < nProcesses - rank; i++)
 		{
 			MPI_Recv(&recv_value, 1, MPI_INT, (rank - 1), 0, MPI_COMM_WORLD, &status);
+
 			if (actual_value == -1)
 			{
 				actual_value = recv_value;
