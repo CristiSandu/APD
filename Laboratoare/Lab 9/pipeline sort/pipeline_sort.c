@@ -74,15 +74,17 @@ int main(int argc, char *argv[])
 		qsort(vQSort, nProcesses - 1, sizeof(int), cmp);
 
 		// TODO sort the vector v
-		MPI_Send(&v, nProcesses - 1, MPI_INT, 1, 0, MPI_COMM_WORLD);
-		for (int i = 1; i < nProcesses - 1; i++)
+		//MPI_Send(&v, nProcesses - 1, MPI_INT, 1, 0, MPI_COMM_WORLD);
+		for (int i = 0; i < nProcesses - rank; i++)
 		{
-			MPI_Send(&intialValue, 1, MPI_INT, i, 0, MPI_COMM_WORLD);
+			MPI_Send(&v[i], 1, MPI_INT, 1, 0, MPI_COMM_WORLD);
 		}
 
-		MPI_Recv(&recv, 1, MPI_INT, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, &status);
-		v[aux] = recv;
-		aux++;
+		for (int i = 1; i < nProcesses; i++)
+		{
+			MPI_Recv(&v[i - 1], 1, MPI_INT, i, 0, MPI_COMM_WORLD, &status);
+		}
+
 		//MPI_Send(&value, 1, MPI_INT, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD);
 
 		displayVector(v);
@@ -90,35 +92,12 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-		int actual_value, recv_value;
+		int actual_value = -1, recv_value;
 		MPI_Status status;
 
-		if (rank == 1)
+		for (int i = 0; i < nProcesses - rank; i++)
 		{
-			int *a = (int *)malloc(sizeof(int) * (nProcesses - 1));
-			MPI_Recv(&a, nProcesses - 1, MPI_INT, 0, 0, MPI_COMM_WORLD, &status);
-			MPI_Recv(&actual_value, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, &status);
-			for (int i = 0; i < nProcesses - 1; i++)
-			{
-				if (actual_value == -1)
-				{
-					actual_value = a[i];
-				}
-				else if (actual_value <= a[i])
-				{
-					MPI_Send(&a[i], 1, MPI_INT, rank + 1, 0, MPI_COMM_WORLD);
-				}
-				else
-				{
-					MPI_Send(&actual_value, 1, MPI_INT, 0, 0, MPI_COMM_WORLD);
-					actual_value = a[i];
-				}
-			}
-		}
-		else
-		{
-			MPI_Recv(&actual_value, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, &status);
-			MPI_Recv(&recv_value, 1, MPI_INT, 0, rank - 1, MPI_COMM_WORLD, &status);
+			MPI_Recv(&recv_value, 1, MPI_INT, (rank - 1), 0, MPI_COMM_WORLD, &status);
 			if (actual_value == -1)
 			{
 				actual_value = recv_value;
@@ -129,10 +108,13 @@ int main(int argc, char *argv[])
 			}
 			else
 			{
-				MPI_Send(&recv_value, 1, MPI_INT, 0, 0, MPI_COMM_WORLD);
+				MPI_Send(&actual_value, 1, MPI_INT, rank + 1, 0, MPI_COMM_WORLD);
 				actual_value = recv_value;
 			}
+
+			MPI_Send(&actual_value, 1, MPI_INT, 0, 0, MPI_COMM_WORLD);
 		}
+
 		// TODO sort the vector v
 	}
 
