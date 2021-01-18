@@ -72,20 +72,21 @@ int main(int argc, char *argv[])
 		for (i = 0; i < nProcesses - 1; i++)
 			vQSort[i] = v[i];
 		qsort(vQSort, nProcesses - 1, sizeof(int), cmp);
+		displayVector(vQSort);
 
 		// TODO sort the vector v
 		//MPI_Send(&v, nProcesses - 1, MPI_INT, 1, 0, MPI_COMM_WORLD);
 		for (int i = 0; i < nProcesses - rank; i++)
 
 		{
-			MPI_Send(&v[i], 1, MPI_INT, 1, 0, MPI_COMM_WORLD);
+			MPI_Send(&v[i], 1, MPI_INT, rank + 1, 0, MPI_COMM_WORLD);
 		}
 
 		for (int i = 1; i < nProcesses; i++)
 		{
 			MPI_Recv(&v[i - 1], 1, MPI_INT, i, 0, MPI_COMM_WORLD, &status);
 		}
-		MPI_Send(&v, nProcesses - 1, MPI_INT, 1, 0, MPI_COMM_WORLD);
+		//MPI_Send(&v, nProcesses - 1, MPI_INT, 1, 0, MPI_COMM_WORLD);
 
 		//MPI_Send(&value, 1, MPI_INT, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD);
 
@@ -114,9 +115,8 @@ int main(int argc, char *argv[])
 				MPI_Send(&actual_value, 1, MPI_INT, rank + 1, 0, MPI_COMM_WORLD);
 				actual_value = recv_value;
 			}
-
-			MPI_Send(&actual_value, 1, MPI_INT, 0, 0, MPI_COMM_WORLD);
 		}
+		MPI_Send(&actual_value, 1, MPI_INT, 0, 0, MPI_COMM_WORLD);
 
 		// TODO sort the vector v
 	}

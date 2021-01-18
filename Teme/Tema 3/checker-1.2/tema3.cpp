@@ -1,41 +1,158 @@
 #include <mpi.h>
 #include <stdio.h>
+#include <pthread.h>
 #include <stdlib.h>
 
-int N;
+#include <vector>
+#include <iostream>
+#include <fstream>
 
-void compareVectors(int *a, int *b)
+using namespace std;
+
+void *thread_function_citire(void *arg)
 {
-    // DO NOT MODIFY
-    int i;
-    for (i = 0; i < N; i++)
+    int thread_id = *(int *)arg;
+
+    ifstream myFile;
+
+    myFile.open("myFile.txt");
+    string STRING;
+    vector<string> values;
+    string comedy_str = "comedy";
+    string fantasy_str = "fantasy";
+    string SF_str = "science-fiction";
+    string horror_str = "horror";
+
+    int horror = 0;
+    int comedy = 0;
+    int fantasy = 0;
+    int SF = 0;
+
+    int size_vec = 0;
+    int size_string = 0;
+
+    while (!myFile.eof()) // To get you all the lines.
     {
-        if (a[i] != b[i])
+        getline(myFile, STRING); // Saves the line in STRING.
+        //cout << STRING << thread_id << endl;
+        switch (thread_id)
         {
-            printf("Sorted incorrectly\n");
-            return;
+        case 0:
+            // cout << STRING << " " << thread_id << endl;
+
+            if (STRING == comedy_str ||
+                STRING == fantasy_str ||
+                STRING == SF_str)
+            {
+                horror = 0;
+                size_vec = values.size();
+                cout << STRING << endl;
+                MPI_Send(&size_vec, 1, MPI_INT, thread_id + 1, 0, MPI_COMM_WORLD);
+                for (int i = 0; i < values.size(); i++)
+                {
+                    size_string = values[i].size();
+                    MPI_Send(&size_string, 1, MPI_INT, thread_id + 1, 0, MPI_COMM_WORLD);
+                    MPI_Send(values[i].c_str(), values[i].size(), MPI_CHAR, thread_id + 1, 0, MPI_COMM_WORLD);
+                }
+            }
+
+            printf("%s", STRING.c_str());
+            if (!strcmp(STRING.c_str(), "horror"))
+            {
+                horror = 1;
+                cout << horror << endl;
+            }
+            break;
+
+        case 1:
+            //cout << STRING << " " << thread_id << endl;
+
+            if (STRING == horror_str ||
+                STRING == fantasy_str ||
+                STRING == SF_str)
+            {
+                comedy = 0;
+                size_vec = values.size();
+                MPI_Send(&size_vec, 1, MPI_INT, thread_id + 1, 0, MPI_COMM_WORLD);
+                for (int i = 0; i < values.size(); i++)
+                {
+                    size_string = values[i].size();
+                    MPI_Send(&size_string, 1, MPI_INT, thread_id + 1, 0, MPI_COMM_WORLD);
+                    MPI_Send(values[i].c_str(), values[i].size(), MPI_CHAR, thread_id + 1, 0, MPI_COMM_WORLD);
+                }
+            }
+            else if (STRING == comedy_str)
+            {
+                comedy = 1;
+            }
+            break;
+
+        case 2:
+            //cout << STRING << " " << thread_id << endl;
+
+            if (STRING == comedy_str ||
+                STRING == horror_str ||
+                STRING == SF_str)
+            {
+                fantasy = 0;
+                size_vec = values.size();
+                MPI_Send(&size_vec, 1, MPI_INT, thread_id + 1, 0, MPI_COMM_WORLD);
+                for (int i = 0; i < values.size(); i++)
+                {
+                    size_string = values[i].size();
+                    MPI_Send(&size_string, 1, MPI_INT, thread_id + 1, 0, MPI_COMM_WORLD);
+                    MPI_Send(values[i].c_str(), values[i].size(), MPI_CHAR, thread_id + 1, 0, MPI_COMM_WORLD);
+                }
+            }
+            else if (STRING == fantasy_str)
+            {
+                fantasy = 1;
+            }
+            break;
+
+        case 3:
+            //cout << STRING << " " << thread_id << endl;
+
+            if (STRING == comedy_str ||
+                STRING == horror_str ||
+                STRING == fantasy_str)
+            {
+                SF = 0;
+                size_vec = values.size();
+                MPI_Send(&size_vec, 1, MPI_INT, thread_id + 1, 0, MPI_COMM_WORLD);
+                for (int i = 0; i < values.size(); i++)
+                {
+                    size_string = values[i].size();
+                    MPI_Send(&size_string, 1, MPI_INT, thread_id + 1, 0, MPI_COMM_WORLD);
+                    MPI_Send(values[i].c_str(), values[i].size(), MPI_CHAR, thread_id + 1, 0, MPI_COMM_WORLD);
+                }
+            }
+            else if (STRING == SF_str)
+                SF = 1;
+            break;
+        default:
+            break;
+        }
+        /*cout << "Val sf " << SF << endl;
+        cout << "fantasy " << fantasy << endl;
+        cout << "comedy " << comedy << endl;
+        cout << "horror " << horror << endl;*/
+        if (SF == 1 || fantasy == 1 || comedy == 1 || horror == 1)
+        {
+            cout << "Send to " << thread_id << endl;
+            values.push_back(STRING);
+            //cout << STRING << endl; // Prints our STRING.
         }
     }
-    printf("Sorted correctly\n");
-}
 
-void displayVector(int *v)
-{
-    // DO NOT MODIFY
-    int i;
-    for (i = 0; i < N; i++)
-    {
-        printf("%d ", v[i]);
-    }
-    printf("\n");
-}
+    myFile.close();
+    /*
+        int start = thread_id * (double)N / P;
+        int end = fmin((thread_id + 1) * (double)N / P, N);
+        int i, k, aux, start_imp, start_par;
+    */
 
-int cmp(const void *a, const void *b)
-{
-    // DO NOT MODIFY
-    int A = *(int *)a;
-    int B = *(int *)b;
-    return A - B;
+    pthread_exit(NULL);
 }
 
 int main(int argc, char const *argv[])
@@ -43,82 +160,83 @@ int main(int argc, char const *argv[])
     int rank;
     int nProcesses;
     int provided;
-    MPI_Init_thread(&argc, &argv, MPI_THREAD_MULTIPLE, &provided);
+    int P = 4;
+
+    MPI_Init_thread(&argc, (char ***)&argv, MPI_THREAD_MULTIPLE, &provided);
 
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &nProcesses);
+
     printf("Hello from %i/%i\n", rank, nProcesses);
-    int *a = (int *)malloc(sizeof(int) * (nProcesses - 1));
+    //int *a = (int *)malloc(sizeof(int) * (nProcesses - 1));
     if (rank == 0)
     { // This code is run by a single process
-        int intialValue = -1;
-        MPI_Status status;
-        int sorted = 0;
-        int aux = 0, recv;
-        int *v = (int *)malloc(sizeof(int) * (nProcesses - 1));
-        int *vQSort = (int *)malloc(sizeof(int) * (nProcesses - 1));
-        int i, val;
-
-        // generate the vector v with random values
-        // DO NOT MODIFY
-        srandom(42);
-        for (i = 0; i < nProcesses - 1; i++)
-            v[i] = random() % 200;
-        N = nProcesses - 1;
-        displayVector(v);
-
-        // make copy to check it against qsort
-        // DO NOT MODIFY
-        for (i = 0; i < nProcesses - 1; i++)
-            vQSort[i] = v[i];
-        qsort(vQSort, nProcesses - 1, sizeof(int), cmp);
-
-        // TODO sort the vector v
-        //MPI_Send(&v, nProcesses - 1, MPI_INT, 1, 0, MPI_COMM_WORLD);
-        for (int i = 0; i < nProcesses - rank; i++)
-
+        pthread_t tid[P];
+        int thread_id[P];
+        int i;
+        for (i = 0; i < P; i++)
         {
-            MPI_Send(&v[i], 1, MPI_INT, 1, 0, MPI_COMM_WORLD);
+            thread_id[i] = i;
+            pthread_create(&tid[i], NULL, thread_function_citire, &thread_id[i]);
         }
 
-        for (int i = 1; i < nProcesses; i++)
+        for (i = 0; i < P; i++)
         {
-            MPI_Recv(&v[i - 1], 1, MPI_INT, i, 0, MPI_COMM_WORLD, &status);
+            pthread_join(tid[i], NULL);
         }
-        MPI_Send(&v, nProcesses - 1, MPI_INT, 1, 0, MPI_COMM_WORLD);
-
-        //MPI_Send(&value, 1, MPI_INT, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD);
-
-        displayVector(v);
-        compareVectors(v, vQSort);
     }
     else
     {
-        int actual_value = -1, recv_value;
+
         MPI_Status status;
+        int size_vect;
+        int size_string;
 
-        for (int i = 0; i < nProcesses - rank; i++)
+        vector<string> vect_string;
+
+        MPI_Recv(&size_vect, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, &status);
+        for (int i = 0; i < size_vect; i++)
         {
-            MPI_Recv(&recv_value, 1, MPI_INT, (rank - 1), 0, MPI_COMM_WORLD, &status);
+            MPI_Recv(&size_string, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, &status);
+            char *str_main = (char *)malloc(sizeof(char) * size_string);
 
-            if (actual_value == -1)
-            {
-                actual_value = recv_value;
-            }
-            else if (actual_value <= recv_value)
-            {
-                MPI_Send(&recv_value, 1, MPI_INT, rank + 1, 0, MPI_COMM_WORLD);
-            }
-            else
-            {
-                MPI_Send(&actual_value, 1, MPI_INT, rank + 1, 0, MPI_COMM_WORLD);
-                actual_value = recv_value;
-            }
-
-            MPI_Send(&actual_value, 1, MPI_INT, 0, 0, MPI_COMM_WORLD);
+            MPI_Recv(&str_main, size_string, MPI_CHAR, 0, 0, MPI_COMM_WORLD, &status);
+            vect_string.push_back(str_main);
+            //cout << str_main << endl;
         }
 
-        // TODO sort the vector v
+        switch (rank)
+        {
+        case 1:
+            for (int i = 0; i < vect_string.size(); i++)
+            {
+                cout << vect_string[i] << endl;
+            }
+            break;
+
+        case 2:
+            for (int i = 0; i < vect_string.size(); i++)
+            {
+                cout << vect_string[i] << endl;
+            }
+            break;
+
+        case 3:
+            for (int i = 0; i < vect_string.size(); i++)
+            {
+                cout << vect_string[i] << endl;
+            }
+            break;
+
+        case 4:
+            for (int i = 0; i < vect_string.size(); i++)
+            {
+                cout << vect_string[i] << endl;
+            }
+            break;
+        default:
+            break;
+        }
     }
 
     MPI_Finalize();
