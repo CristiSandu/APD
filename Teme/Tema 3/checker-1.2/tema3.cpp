@@ -38,7 +38,6 @@ void *thread_function_citire(void *arg)
         switch (thread_id)
         {
         case 0:
-            // cout << STRING << " " << thread_id << endl;
 
             if (STRING == comedy_str ||
                 STRING == fantasy_str ||
