@@ -49,40 +49,60 @@ int *get_dst(int rank, int numProcs, int leader)
 		v[rank] = status.MPI_SOURCE;
 	}
 
-	for (int i = 0; i < num_neigh; i++)
-	{
-		if (neigh[i] != v[rank])
-		{
-			for (int j = 0; j < v.size(); j++)
-			{
-				MPI_Send(&v[i], 1, MPI_INT, neigh[i], 0, MPI_COMM_WORLD);
-			}
-		}
-		MPI_Recv(&q, 1, MPI_INT, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, &status);
-		if (leader < q)
-		{
-			leader = q;
-		}
-	}
-
 	/*
 	*  TODO2: Pentru fiecare proces vecin care nu este parintele procesului curent,
 	*		  voi trimite vectorul de parinti propriu. 
 	*/
 
+	for (int i = 0; i < num_neigh; i++)
+	{
+		if (neigh[i] != v[rank])
+		{
+			MPI_Send(v, numProcs, MPI_INT, neigh[i], 0, MPI_COMM_WORLD);
+		}
+	}
+
 	/*
 	*  TODO2: Vom astepta de la fiecare proces vecin care nu este parintele procesului curent 
 	*		  vectorul de parinti si actualizam vectorul propriu de parinti daca exista informatii aditionale
 	*/
+	for (int i = 0; i < num_neigh; i++)
+	{
+		if (neigh[i] != v[rank])
+		{
+			MPI_Recv(vRecv, numProcs, MPI_INT, neigh[i], 0, MPI_COMM_WORLD, &status);
+			for (int k = 0; k < numProcs; k++)
+			{
+				if (v[k] == -1)
+				{
+					v[k] = vRecv[k];
+				}
+			}
+		}
+	}
 
 	/*
 	*  TODO2: Topologia fiind deja stabilita, orice proces ce nu este lider va propaga
 	* 		  vectorul de vecini parintelui lui si va astepta topologia completa de la acesta
 	*/
 
+	if (rank != leader)
+	{
+		MPI_Send(v, numProcs, MPI_INT, v[rank], 0, MPI_COMM_WORLD);
+		MPI_Recv(vRecv, numProcs, MPI_INT, v[rank], 0, MPI_COMM_WORLD, &status);
+	}
+
 	/*
 	*  TODO2: Procesul curent va trimite doar copiilor lui topologia completa
 	*/
+
+	for (int i = 0; i < num_neigh; i++)
+	{
+		if (v[neigh[i]] == rank)
+		{
+			MPI_Send(v, numProcs, MPI_INT, neigh[i], 0, MPI_COMM_WORLD);
+		}
+	}
 
 	for (int i = 0; i < numProcs && rank == leader; i++)
 	{
@@ -146,6 +166,14 @@ int get_number_of_nodes(int rank, int leader)
 		* 		 Cu valoarea primita, actualizam valoarea cunoscuta ca fiind
 		* 		 media dintre cele 2
 		*/
+		MPI_Status status;
+		for (int i = 0; i < num_neigh; i++)
+		{
+			double nr_vec;
+			MPI_Send(&val, 1, MPI_DOUBLE, neigh[i], 0, MPI_COMM_WORLD);
+			MPI_Recv(&nr_vec, 1, MPI_DOUBLE, neigh[i], 0, MPI_COMM_WORLD, &status);
+			val = (val + nr_vec) / 2;
+		}
 	}
 
 	MPI_Barrier(MPI_COMM_WORLD);
